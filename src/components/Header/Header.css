@@ -1,0 +1,51 @@
+/* .Header {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */
+
+.Header {
+  margin: 5px;
+}
+
+.Header a {
+  color: #444;
+  text-decoration: none;
+}
+
+.not-logged-in {
+  position: fixed;
+  top: 0;
+  width: 93%;
+}
+
+.not-logged-in a {
+  float: right;
+  display: block;
+  text-align: start;
+  padding: 14px;
+  /* text-decoration: none; */
+}
+
+.not-logged-in a:hover {
+  color: black;
+}
+
+.logged-in {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.logged-in a {
+  float: right;
+  display: block;
+  text-align: start;
+  padding: 14px;
+  /* text-decoration: none; */
+}
+
+.logged-in a:hover {
+  color: black;
+}
