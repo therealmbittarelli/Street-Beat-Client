@@ -17,8 +17,9 @@ export default class BandRegistrationForm extends Component {
     const { band_name, city, state, country, description } = e.target;
 
     this.setState({ error: null });
+    console.log(band_name, city, state, country, description);
 
-    AuthApiService.postUser({
+    AuthApiService.postBand({
       band_name: band_name.value,
       city: city.value,
       state: state.value,
@@ -67,19 +68,17 @@ export default class BandRegistrationForm extends Component {
           <Input
             name='city'
             type='text'
-            required
             id='BandRegistrationForm_city'>
           </Input>
         </div>
         <div className='state'>
           <label htmlFor='BandRegistrationForm_state'>
-            State <Required />
+            State
           </label>
           <Input
-            name='email'
+            name='state'
             type='text'
-            required
-            id='BandRegistrationForm_email'>
+            id='BandRegistrationForm_state'>
           </Input>
         </div>
         <div className='country'>
@@ -107,7 +106,7 @@ export default class BandRegistrationForm extends Component {
         <Button type='submit'>
           Register
         </Button>
-        <Link to={'/dashboard'}>
+        <Link to={'/dashboard/user'}>
           Back
         </Link>
       </form>

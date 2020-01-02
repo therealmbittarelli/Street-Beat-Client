@@ -9,18 +9,18 @@ export default class UsersBands extends Component {
   static contextType = BandsListContext;
 
   static defaultProps = {
-    band_name: ''
+    key: '',
+    title: '',
+    date: ''
   }
 
 
   render() {
-    console.log('key and band_name', this.props.id, this.props.band_name)
-    this.context.activeBand = this.props.id
-    console.log('thiscontextactiveband', this.context.activeBand);
+    console.log('key and band_name', this.props.key, this.props.title, this.props.date)
     return (
-      <div key={this.props.id}>
-        <Link to='/dashboard/band'>{this.props.band_name}</Link>
+      <div>
+        <Link to='/dashboard/band/setlists/:setlist_id'>{this.props.title}</Link>
       </div>
     )
   }
-} 
+}

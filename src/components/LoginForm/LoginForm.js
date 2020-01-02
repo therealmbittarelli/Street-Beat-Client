@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TokenService from '../../services/token-service';
 import { Button, Input } from '../Utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
+import BandsListContext from '../../Context';
 import './LoginForm.css';
 
 export default class LoginForm extends Component {
@@ -9,6 +10,8 @@ export default class LoginForm extends Component {
     onLoginSuccess: () => { },
     onLoginFail: () => { }
   };
+
+  static contextType = BandsListContext;
 
   state = { error: null };
 
@@ -27,7 +30,6 @@ export default class LoginForm extends Component {
 
   handleSubmitJwtAuth(ev) {
     ev.preventDefault();
-    console.log("this", this)
     this.setState({ error: null });
     const { email, password } = ev.target;
 
@@ -39,6 +41,8 @@ export default class LoginForm extends Component {
         email.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
+        this.context.activeUser = res.id;
+        console.log('res.id is', res.id);
         this.props.onLoginSuccess();
       })
       .catch((res) => {

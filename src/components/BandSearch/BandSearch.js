@@ -15,12 +15,6 @@ class BandSearch extends Component {
       searchTerm: '',
       error: null
     }
-
-
-  }
-
-  static defaultProps = {
-    onSearch: () => { }
   }
 
   static contextType = BandsListContext;
@@ -38,9 +32,6 @@ class BandSearch extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log('state searchterm is', this.state.searchTerm);
-
-    console.log('getInput', this.handleInput);
 
     this.setState({ error: null });
     const searchInput = this.state.searchTerm;
@@ -67,7 +58,9 @@ class BandSearch extends Component {
     const results = this.state.searchResults;
 
     return results.map(result =>
-      (<BandResult band_name={result.band_name} />)
+      (<BandResult
+        band_name={result.band_name}
+        id={result.id} />)
     )
   }
 

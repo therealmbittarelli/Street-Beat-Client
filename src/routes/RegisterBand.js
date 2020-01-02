@@ -12,7 +12,7 @@ class RegisterBand extends Component {
   handleRegisterSuccess = () => {
     const { history } = this.props;
     // const destination = (location.state || {}).from || '/';
-    history.push('/dashboard');
+    history.push('/dashboard/user');
   }
 
   // handleRegisterFail?

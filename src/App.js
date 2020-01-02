@@ -4,10 +4,12 @@ import Header from "./components/Header/Header";
 import NotFoundPage from "./routes/NotFoundPage";
 import RegisterUser from "./routes/RegisterUser";
 import UserDashboard from "./routes/UserDashboard";
+import BandDashboard from "./routes/BandDashboard";
+import AllSetlists from "./routes/AllSetlists";
 import LoginFail from './routes/LoginFail';
 import RegisterBand from './routes/RegisterBand';
-import PrivateRoute from './components/Utils/PrivateRoute'
-import PublicOnlyRoute from './components/Utils/PublicOnlyRoute'
+import PrivateRoute from './components/Utils/PrivateRoute';
+import PublicOnlyRoute from './components/Utils/PublicOnlyRoute';
 import { Route, Switch } from "react-router-dom";
 // import Context from "./Context";
 
@@ -70,18 +72,22 @@ class App extends Component {
               component={RegisterUser}
             />
             <PrivateRoute
-              path={'/dashboard'}
+              path={'/dashboard/band/setlists'}
+              component={AllSetlists}
+            />
+            <PrivateRoute
+              path={'/dashboard/user'}
               component={UserDashboard}
             />
-            <Route
+            <PrivateRoute
+              path={`/dashboard/band/`}
+              component={BandDashboard}
+            />
+            <PublicOnlyRoute
               path={'/loginfail'}
               component={LoginFail}
             />
-            <Route
-              path={'/register'}
-              component={RegisterUser}
-            />
-            <Route
+            <PrivateRoute
               path={'/registerband'}
               component={RegisterBand}
             />

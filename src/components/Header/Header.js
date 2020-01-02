@@ -39,7 +39,7 @@ export default class Header extends Component {
     return (
       <nav className='Header'>
         <h1>
-          <Link to='/'>
+          <Link to='/dashboard/user'>
             {' '}
             Street Beat
           </Link>
