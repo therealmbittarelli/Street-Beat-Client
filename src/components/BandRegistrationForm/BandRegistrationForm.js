@@ -9,7 +9,7 @@ export default class BandRegistrationForm extends Component {
     onRegistrationSuccess: () => { }
   }
 
-  state = { error: null }
+  state = { error: null };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -26,7 +26,7 @@ export default class BandRegistrationForm extends Component {
       country: country.value,
       description: description.value
     })
-      .then(band => {
+      .then((band) => {
         console.log('band is', band);
         band_name.value = '';
         city.value = '';
@@ -51,7 +51,7 @@ export default class BandRegistrationForm extends Component {
           {error && <p className='red'>{'Something went wrong. Please try again.'}</p>}
         </div>
         <div className='first_name'>
-          <label htmlFor='BandegistrationForm_band_name'>
+          <label htmlFor='BandRegistrationForm_band_name'>
             Band name <Required />
           </label>
           <Input

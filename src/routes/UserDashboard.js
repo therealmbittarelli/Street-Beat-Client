@@ -19,25 +19,24 @@ class UserDashboard extends Component {
   componentDidMount() {
     console.log('this.context is', this.context);
     const authToken = TokenService.getAuthToken();
-    if (!authToken) {
-      return this.props.history.push('/');
-    }
-    if (this.context.activeUser) {
-      const url = `${config.API_ENDPOINT}/users/${this.context.activeUser}/mybands`;
 
-      fetch(url, {
-        method: "GET",
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
-        }
+    const url = `${config.API_ENDPOINT}/bands/mybands`;
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('data is', data);
+        this.context.setUsersBands(data);
+        this.context.setBandsList(data);
+        console.log('')
       })
-        .then(res => res.json())
-        .then(data => {
-          console.log('data is', data);
-          this.context.setBandsList(data);
-        });
-    }
+      .catch(console.log);
   }
 
 

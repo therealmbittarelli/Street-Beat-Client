@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import TokenService from './services/token-service.js'
-import config from './config';
+// import TokenService from './services/token-service.js'
+// import config from './config';
 
 
 const BandsListContext = React.createContext({
   setBandsList: () => { },
+  setActiveBand: () => { },
   setBandMembers: () => { },
+  setBandSetlists: () => { },
+  setBandRepertoire: () => { },
   setError: () => { },
   clearError: () => { },
   bandsList: [],
@@ -13,7 +16,9 @@ const BandsListContext = React.createContext({
   bandMembers: [],
   activeUser: '',
   activeBand: '',
-  usersBands: []
+  usersBands: [],
+  bandSetlists: [],
+  bandRepertoire: []
 });
 
 export default BandsListContext;
@@ -25,52 +30,37 @@ export class BandsListProvider extends Component {
     bandMembers: [],
     activeUser: '',
     activeBand: '',
-    usersBands: []
+    usersBands: [],
+    bandSetlists: [],
+    bandRepertoire: []
   };
 
-  componentDidMount() {
-    const authToken = TokenService.getAuthToken();
-    const token = this.jwtDecode(authToken);
-    console.log('token is ', token);
-    this.setState({
-      activeUser: token.payload.id
-    });
-    if (!authToken) {
-      return this.props.history.push('/');
-    } else {
-      const url = `${config.API_ENDPOINT}/users/${token.payload.id}/mybands`;
 
-      fetch(url, {
-        method: "GET",
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
-        }
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log('data is', data);
-          this.setState({
-            usersBands: data
-          })
-        });
-    }
+
+  setUsersBands = (usersBands) => {
+    this.setState({ usersBands })
   }
 
-  jwtDecode = (t) => {
-    let token = {};
-    token.raw = t;
-    token.header = JSON.parse(window.atob(t.split('.')[0]));
-    token.payload = JSON.parse(window.atob(t.split('.')[1]));
-    return (token)
-  }
-
-  setBandsList = bandsList => {
+  setBandsList = (bandsList) => {
     this.setState({ bandsList })
   }
 
-  setBandMembers = bandMembers => {
+  setBandMembers = (bandMembers) => {
     this.setState({ bandMembers })
+  }
+
+  setActiveBand = (bandId) => {
+    this.setState({
+      activeBand: bandId
+    })
+  }
+
+  setBandSetlists = (bandSetlists) => {
+    this.setState({ bandSetlists })
+  }
+
+  setBandRepertoire = (bandRepertoire) => {
+    this.setState({ bandRepertoire })
   }
 
   setError = error => {
@@ -85,16 +75,22 @@ export class BandsListProvider extends Component {
 
   render() {
     const value = {
-      bandsList: this.state.bandsList,
+      activeBand: this.state.activeBand,
+      activeUser: this.state.activeUser,
+      bandRepertoire: this.state.bandRepertoire,
       bandMembers: this.state.bandMembers,
+      bandsList: this.state.bandsList,
+      bandSetlists: this.state.bandSetlists,
       error: this.state.error,
-      setError: this.setError,
+      usersBands: this.state.usersBands,
       clearError: this.clearError,
+      setActiveBand: this.setActiveBand,
       setBandsList: this.setBandsList,
       setBandMembers: this.setBandMembers,
-      activeUser: this.state.activeUser,
-      usersBands: this.state.usersBands,
-      activeBand: this.state.activeBand
+      setBandSetlists: this.setBandSetlists,
+      setBandRepertoire: this.setBandRepertoire,
+      setError: this.setError,
+      setUsersBands: this.setUsersBands
     }
     return (
       <BandsListContext.Provider value={value}>

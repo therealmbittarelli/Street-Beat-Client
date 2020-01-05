@@ -6,6 +6,8 @@ import RegisterUser from "./routes/RegisterUser";
 import UserDashboard from "./routes/UserDashboard";
 import BandDashboard from "./routes/BandDashboard";
 import AllSetlists from "./routes/AllSetlists";
+import SelectedSetlist from './routes/SelectedSetlist';
+import CreateSetlist from "./routes/CreateSetlist";
 import LoginFail from './routes/LoginFail';
 import RegisterBand from './routes/RegisterBand';
 import PrivateRoute from './components/Utils/PrivateRoute';
@@ -35,25 +37,6 @@ class App extends Component {
 
   render() {
 
-    // fetch('http://localhost:8000/api', {
-    //   method: 'POST',
-    //   headers: {
-    //     // 'Content-type': 'application/json',
-    //     'Content-type': 'text/plain',
-    //     'Authorization': '`Bearer` + ${getAuthToken()}`',
-    //   },
-    //   body: 'mattocattt'
-    // })
-    //   .then((res) => {
-
-    //     return res.text()
-
-    //   })
-    //   .then((res) => {
-
-    //     console.log(res);
-    //   })
-
     return (
       <div className='App'>
         <header className='App_header'>
@@ -72,15 +55,28 @@ class App extends Component {
               component={RegisterUser}
             />
             <PrivateRoute
-              path={'/dashboard/band/setlists'}
+              exact
+              path={'/dashboard/band/:bandId/setlists/createsetlist'}
+              component={CreateSetlist}
+            />
+            <PrivateRoute
+              exact
+              path={'/dashboard/band/:bandId/setlists'}
               component={AllSetlists}
             />
             <PrivateRoute
+              exact
+              path={'/dashboard/band/:bandId/setlist'}
+              component={SelectedSetlist}
+            />
+            <PrivateRoute
+              exact
               path={'/dashboard/user'}
               component={UserDashboard}
             />
             <PrivateRoute
-              path={`/dashboard/band/`}
+              exact
+              path={'/dashboard/band/:bandId'}
               component={BandDashboard}
             />
             <PublicOnlyRoute
@@ -88,6 +84,7 @@ class App extends Component {
               component={LoginFail}
             />
             <PrivateRoute
+              exact
               path={'/registerband'}
               component={RegisterBand}
             />
@@ -99,24 +96,6 @@ class App extends Component {
       </div>
     )
   }
-
-  //   fetch('http://localhost:8000/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //       // 'Authorization': `Bearer ${config.REACT_APP_API_KEY}`,
-  //     },
-  //     body: 'mattocattt'
-  //   })
-  //     .then((res) => {
-  //   console.log(res);
-  // })
-
-  // return (
-  //   <main className="App">
-  //     'hello errbody'
-  //     </main>
-  // );
 }
 
 export default App;

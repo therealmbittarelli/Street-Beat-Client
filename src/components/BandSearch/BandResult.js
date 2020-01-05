@@ -17,18 +17,14 @@ class BandResult extends Component {
   handleSubmit = e => {
     console.log('clicked join band');
     const authToken = TokenService.getAuthToken();
-    const url = `${config.API_ENDPOINT}/bandmembers`;
+    const url = `${config.API_ENDPOINT}/bands/${this.props.id}/join`;
 
     fetch(url, {
       method: "POST",
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
-      },
-      body: JSON.stringify({
-        band_id: this.props.id,
-        user_id: this.context.activeUser
-      })
+      }
     })
       .then(res => res.json())
       .then(data => {

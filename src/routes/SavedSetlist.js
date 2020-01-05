@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TokenService from '../services/token-service.js'
 import BandsListContext from '../Context';
-import config from '../config';
+// import TokenService from '../services/token-service.js'
+// import config from '../config';
 
-export default class UsersBands extends Component {
+export default class SavedSetlist extends Component {
+
 
   static contextType = BandsListContext;
 
   static defaultProps = {
-    key: '',
+    setlistId: '',
     title: '',
-    date: ''
+    date: '',
+    bandId: '',
+    match: ''
   }
 
 
   render() {
-    console.log('key and band_name', this.props.key, this.props.title, this.props.date)
+    const bandId = this.props.bandId;
+
     return (
-      <div>
-        <Link to='/dashboard/band/setlists/:setlist_id'>{this.props.title}</Link>
+      <div key={this.props.id}>
+        <Link
+          to={`/dashboard/band/${bandId}/setlist`}
+        >{`${this.props.title}, ${this.props.date}`}</Link>
       </div>
     )
   }

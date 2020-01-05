@@ -15,21 +15,22 @@ export default class LoginForm extends Component {
 
   state = { error: null };
 
-  handleSubmitBasicAuth(ev) {
-    ev.preventDefault();
-    const { email, password } = ev.target;
+  // handleSubmitBasicAuth(ev) {
+  //   ev.preventDefault();
+  //   const { email, password } = ev.target;
 
-    TokenService.saveAuthToken(
-      TokenService.makeBasicAuthToken(email.value, password.value)
-    );
+  //   TokenService.saveAuthToken(
+  //     TokenService.makeBasicAuthToken(email.value, password.value)
+  //   );
 
-    email.value = '';
-    password.value = '';
-    this.props.onLoginSuccess();
-  }
+  //   email.value = '';
+  //   password.value = '';
+  //   this.props.onLoginSuccess();
+  // }
 
   handleSubmitJwtAuth(ev) {
     ev.preventDefault();
+    console.log('handlesubmitjwtauth has started');
     this.setState({ error: null });
     const { email, password } = ev.target;
 
@@ -41,12 +42,12 @@ export default class LoginForm extends Component {
         email.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
-        this.context.activeUser = res.id;
-        console.log('res.id is', res.id);
+        console.log('res is', res);
         this.props.onLoginSuccess();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        console.log('we got an error');
         this.props.onLoginFail();
       });
   }

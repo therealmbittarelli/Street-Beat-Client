@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import SavedSetlist from './SavedSetlist';
 import TokenService from '../services/token-service.js'
 import BandsListContext from '../Context';
 import config from '../config';
-import SavedSetlist from './SavedSetlist';
 
 export default class AllSetlists extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      setlists: []
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   static contextType = BandsListContext;
 
+  static defaultProps = {
+    match: ''
+  }
+
   componentDidMount() {
     const authToken = TokenService.getAuthToken();
-    const url = `${config.API_ENDPOINT}/bands/:band_id/setlists`;
+    const bandId = this.props.match.params.bandId;
+    const url = `${config.API_ENDPOINT}/bands/${bandId}/setlists`;
 
     fetch(url, {
       method: "GET",
@@ -30,28 +31,29 @@ export default class AllSetlists extends Component {
       .then(res => res.json())
       .then(data => {
         console.log('data is', data);
-        this.setState({
-          setlists: data
-        });
-
+        this.context.setBandSetlists(data);
       });
   }
 
-  renderSavedSetlists() {
-    const allSavedSetlists = this.state.setlists
-    console.log('this state setlists is', this.state.setlists);
-    return allSavedSetlists.map(setlist =>
-      <SavedSetlist
-        key={setlist.id}
-        title={setlist.band_name}
+  renderSavedSetlists = () => {
+    const allSavedSetlists = this.context.bandSetlists;
+    const bandId = this.props.match.params.bandId;
+
+    console.log('this context setlists is', allSavedSetlists);
+    return allSavedSetlists.map((setlist) => {
+      console.log('allsaved map,', setlist)
+      return <SavedSetlist
+        setlistId={setlist.id}
+        title={setlist.title}
         date={setlist.date}
+        bandId={bandId}
       />
-    );
+    });
   }
 
   render() {
     const { error } = this.context;
-
+    const bandId = this.props.match.params.bandId;
     return (
       <div>
         {/* need to populate list of setlists */}
@@ -62,9 +64,11 @@ export default class AllSetlists extends Component {
         </section>
         <section id="add-setlist-container">
           <p>Create a new setlist</p>
-          <Link to={'/dashboard/band/setlists/buildsetlist'}>Build it!</Link>
+          <Link to={`/dashboard/band/${bandId}/setlists/createsetlist`}>Build it!</Link>
         </section>
       </div>
     );
   }
 }
+
+

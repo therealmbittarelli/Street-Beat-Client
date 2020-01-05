@@ -1,44 +1,24 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
 import BandsListContext from '../../Context';
-import config from '../../config';
+// import config from '../../config';
 
 
 export default class BandMembers extends Component {
   static contextType = BandsListContext;
 
-  //getMembers not working code yet
-  getMembers() {
-    return fetch(`${config.API_ENDPOINT}/bands/:band_id`, {
-      headers: {
-      },
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
+  static defaultProps = {
+
   }
-
-  componentDidMount() {
-    this.context.clearError();
-    // BandsApiService.getBands() need to build
-
-    this.getMembers()
-      .then(this.context.setBandMembers)
-      .catch(this.context.setError)
-  }
-
-
 
 
   render() {
-    const { error } = this.context.state
+
     return (
-      <section list="true" className='BandMembers'>
-        {error
-          ? <p className='red'>There was an error, try again</p>
-          : this.renderBandMembers()}
-      </section>
+      <div key={this.props.id}>
+        {/* <Link to='/dashboard/band'>{this.props.band_name}</Link> */}
+        <p>{`${this.props.first_name} ${this.props.last_name}`}</p>
+      </div>
     )
   }
 }

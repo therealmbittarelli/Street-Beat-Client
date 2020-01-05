@@ -10,15 +10,14 @@ class BandDashboard extends Component {
   // constructor(props) {
   //   super(props)
 
-  //   this.state = ({
-  //     bandMembers: []
-  //   })
+
   // }
   static contextType = BandsListContext;
 
   componentDidMount() {
     const authToken = TokenService.getAuthToken();
-    const url = `${config.API_ENDPOINT}/bands/${this.context.activeUser}`;
+    const bandId = this.props.match.params.bandId;
+    const url = `${config.API_ENDPOINT}/bands/${bandId}/bandmembers`;
 
     fetch(url, {
       method: "GET",
@@ -37,19 +36,19 @@ class BandDashboard extends Component {
 
   renderBandMembers() {
     const bandMembers = this.context.bandMembers;
-    console.log('bandMembers on banddashboard is', bandMembers);
     return bandMembers.map(member =>
       <BandMembers
         key={member.id}
-        name={member.first_name}
+        first_name={member.first_name}
+        last_name={member.last_name}
       />
     );
   }
 
 
   render() {
-    console.log('this.bandslistcontext is', this.context);
     const { error } = this.context;
+    const bandId = this.props.match.params.bandId;
 
     return (
       <div>
@@ -61,7 +60,7 @@ class BandDashboard extends Component {
             : this.renderBandMembers()}
         </section>
         <p>Little comment</p>
-        <Link to={'/dashboard/band/setlists'}>Setlist tool</Link>
+        <Link to={`/dashboard/band/${bandId}/setlists`}>Setlist tool</Link>
       </div>
     );
   }
