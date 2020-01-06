@@ -11,7 +11,11 @@ class CreateSetlist extends Component {
   //   super(props)
   // }
 
-  state = { error: null };
+  state = {
+    error: null,
+    setlistDurationArr: [],
+    setlistDuration: ''
+  };
 
   static contextType = BandsListContext;
 
@@ -32,6 +36,7 @@ class CreateSetlist extends Component {
         console.log('data is', data);
         this.context.setBandRepertoire(data);
         console.log('repertoire is', this.context.bandRepertoire);
+
       });
   }
 
@@ -39,68 +44,52 @@ class CreateSetlist extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handle submit setlist form');
+
     const { title, date } = e.target;
     const bandId = this.props.match.params.bandId;
-    console.log(title, date);
+    console.log(title.value, date.value);
 
     AuthApiService.postSetlist(bandId, {
       title: title.value,
       date: date.value
     })
-      .then(() => {
+      .then((res) => {
         this.props.history.push(`/dashboard/band/${bandId}/setlists`);
       })
-      .catch(res => {
+      .catch((res) => {
         this.setState({ error: res.error });
       });
   }
 
+  setlistDurationCounter = () => {
+    const selectedSongs = document.getElementById("right").childNodes
+    let bandRepDurationArr = [];
+    selectedSongs.forEach((song) => {
+      bandRepDurationArr.push(
+        song.getAttribute("duration")
+      );
+    });
 
-  // handleSaveSetlist = () => {
-  //   console.log('clicked save setlist');
-  //   const authToken = TokenService.getAuthToken();
-  //   const bandId = this.props.match.params.bandId;
-  //   // const repertoire = this.context.bandRepertoire;
+    console.log('array of duration is', bandRepDurationArr)
+    let bandRepDurationArrNum = bandRepDurationArr.map((element) => {
+      return parseInt(element, 10)
+    })
 
-  //   const options = document.getElementById("right").childNodes
-
-  //   let songsToSave = [];
-  //   options.forEach((option) => {
-  //     songsToSave.push({
-  //       song_id: option.getAttribute("song_id"),
-  //       band_id: option.getAttribute("band_id")
-  //     });
-  //   });
-  //   console.log('CREATE songIdsArr is', songsToSave);
-  //   const url = `${config.API_ENDPOINT}/bands/${bandId}/setlists/create`;
-
-  //   fetch(url, {
-  //     method: "PATCH",
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //       'Authorization': `Bearer ${authToken}`
-  //     },
-  //     body: JSON.stringify(songsToSave)
-  //   })
-  //     .then((res) => {
-  //       console.log('res is', res);
-  //       return res.json()
-  //     })
-  //     .then((data) => {
-  //       console.log('PATCH data response', data);
-  //       this.props.history.push(`/dashboard/band/${bandId}/setlists`);
-  //       //${bandId}/setlists
-
-  //     })
-  // }
-
-
-
+    let totalDuration = () => {
+      console.log('bandrep', bandRepDurationArrNum);
+      const reducer = (acc, cur) => acc + cur;
+      return bandRepDurationArrNum.reduce(reducer);
+    }
+    console.log('totalduration is', totalDuration())
+    this.setState({
+      setlistDuration: totalDuration()
+    });
+  }
 
   render() {
-    const { error } = this.context;
+    // const { error } = this.context;
     const bandId = this.props.match.params.bandid;
+
 
     return (
       <div id="create-setlist-tool" >
@@ -135,11 +124,13 @@ class CreateSetlist extends Component {
           </div>
           <ShuttleBox
             bandId={bandId}
-            songs={this.context.bandRepertoire} />
+            songs={this.context.bandRepertoire}
+            durationCounter={this.setlistDurationCounter} />
         </form>
         {this.state.error
           ? <p className='red'>Something went wrong. Please try again</p>
           : <div></div>}
+        <p>Setlist duration: {this.state.setlistDuration} </p>
 
 
       </div >

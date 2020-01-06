@@ -23,14 +23,16 @@ class BandSearch extends Component {
     e.preventDefault();
     this.setState({ searchTerm: e.target.value });
     console.log('this.state.searchTerm', this.state.searchTerm);
+    console.log('etargetvalue is', e.target.value)
   }
+
   formatQueryString(params) {
     const formatString = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
 
     return formatString.join('&')
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     this.setState({ error: null });
@@ -56,12 +58,14 @@ class BandSearch extends Component {
 
   renderSearchResults() {
     const results = this.state.searchResults;
-
-    return results.map(result =>
-      (<BandResult
-        band_name={result.band_name}
-        id={result.id} />)
-    )
+    console.log('results is', results);
+    if (results.length > 0) {
+      return results.map(result =>
+        (<BandResult
+          band_name={result.band_name}
+          id={result.id} />)
+      )
+    }
   }
 
   render() {
@@ -79,13 +83,10 @@ class BandSearch extends Component {
           id='band_search_bar'
           value={this.state.searchTerm}
           onChange={this.handleInput.bind(this)}
-          placeholder='Fly By Brass Band'
-
-        >
+          placeholder='Fly By Brass Band'>
         </Input>
         <Button
-          type='submit'
-        >
+          type='submit'>
           Search
         </Button>
         <section list="true" className="BandsList">

@@ -5,7 +5,7 @@ import TokenService from '../services/token-service.js'
 import BandsListContext from '../Context';
 import config from '../config';
 import BandSearch from '../components/BandSearch/BandSearch';
-// src/Context.js
+
 class UserDashboard extends Component {
   constructor(props) {
     super(props)
@@ -17,7 +17,6 @@ class UserDashboard extends Component {
   static contextType = BandsListContext;
 
   componentDidMount() {
-    console.log('this.context is', this.context);
     const authToken = TokenService.getAuthToken();
 
     const url = `${config.API_ENDPOINT}/bands/mybands`;
@@ -31,7 +30,6 @@ class UserDashboard extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('data is', data);
         this.context.setUsersBands(data);
         this.context.setBandsList(data);
         console.log('')
@@ -39,16 +37,12 @@ class UserDashboard extends Component {
       .catch(console.log);
   }
 
-
-
-
   renderUsersBands = () => {
     const bandsUserIsIn = this.context.usersBands;
-    console.log('this context usersBands is', this.context.usersBands);
     return bandsUserIsIn.map(band =>
 
       < UsersBands
-        id={band.id} // maybe not needed here
+        id={band.id}
         band_name={band.band_name}
       />
     );

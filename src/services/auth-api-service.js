@@ -18,6 +18,7 @@ const AuthApiService = {
           : res.json()
       )
   },
+
   postUser(user) {
     return fetch(`${config.API_ENDPOINT}/users`, {
       method: 'POST',
@@ -33,6 +34,7 @@ const AuthApiService = {
           : res.json()
       );
   },
+
   postBand(band) {
     return fetch(`${config.API_ENDPOINT}/bands`, {
       method: 'POST',
@@ -48,6 +50,23 @@ const AuthApiService = {
           : res.json()
       );
   },
+
+  postSong(song) {
+    return fetch(`${config.API_ENDPOINT}/bands/1/songs`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(song)
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      );
+  },
+
   postSetlist(bandId, setlist) {
 
     const options = document.getElementById("right").childNodes
@@ -72,12 +91,13 @@ const AuthApiService = {
       },
       body: setlistJSON
     })
-      .then(res => {
+      .then(res =>
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
-      });
-  }
+      );
+  },
+
 }
 
 export default AuthApiService;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import { Button, Input } from '../Utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
@@ -15,25 +16,12 @@ export default class LoginForm extends Component {
 
   state = { error: null };
 
-  // handleSubmitBasicAuth(ev) {
-  //   ev.preventDefault();
-  //   const { email, password } = ev.target;
-
-  //   TokenService.saveAuthToken(
-  //     TokenService.makeBasicAuthToken(email.value, password.value)
-  //   );
-
-  //   email.value = '';
-  //   password.value = '';
-  //   this.props.onLoginSuccess();
-  // }
-
-  handleSubmitJwtAuth(ev) {
-    ev.preventDefault();
+  handleSubmitJwtAuth(e) {
+    e.preventDefault();
     console.log('handlesubmitjwtauth has started');
     this.setState({ error: null });
-    const { email, password } = ev.target;
-
+    const { email, password } = e.target;
+    console.log('email and password are', email.value, password.value);
     AuthApiService.postLogin({
       email: email.value,
       password: password.value
@@ -57,7 +45,7 @@ export default class LoginForm extends Component {
     return (
       <form
         className='LoginForm'
-        onSubmit={(ev) => { this.handleSubmitJwtAuth(ev); }}
+        onSubmit={(e) => { this.handleSubmitJwtAuth(e); }}
       >
         <div role='alert'>
           {error && <p className='red'>{'Something went wrong. Please try again.'}</p>}
@@ -83,12 +71,15 @@ export default class LoginForm extends Component {
             id='LoginForm_password'>
           </Input>
         </div>
-        <Button type='submit'>
+        <Button
+          id="login-submit-button"
+          type='submit'>
           Login
         </Button>
-        {/* <Link>
-          <p>Register here</p>
-        </Link> */}
+        <Link
+          to='/register'
+          id="login-register-button">
+          Register</Link>
       </form>
     );
   }

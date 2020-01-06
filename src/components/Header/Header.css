@@ -4,9 +4,11 @@
   flex-direction: row;
   justify-content: center;
 } */
-
-.Header {
-  margin: 5px;
+ 
+h1 {
+  margin-top: 85px;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 50px;
 }
 
 .Header a {
@@ -16,8 +18,9 @@
 
 .not-logged-in {
   position: fixed;
+  margin: 25px;
   top: 0;
-  width: 93%;
+  width: 92%;
 }
 
 .not-logged-in a {
@@ -34,8 +37,9 @@
 
 .logged-in {
   position: fixed;
+  margin: 25px;
   top: 0;
-  width: 93%;
+  width: 92%;
 }
 
 .logged-in a {

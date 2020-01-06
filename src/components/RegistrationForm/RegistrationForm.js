@@ -91,7 +91,7 @@ export default class RegistrationForm extends Component {
           </Input>
         </div>
         <Button type='submit'>
-          Register
+          Submit
         </Button>
       </form>
     )

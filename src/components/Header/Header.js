@@ -40,7 +40,7 @@ export default class Header extends Component {
       <nav className='Header'>
         <h1>
           <Link to='/dashboard/user'>
-            {' '}
+            {/* {' '} */}
             Street Beat
           </Link>
         </h1>

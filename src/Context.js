@@ -4,21 +4,23 @@ import React, { Component } from 'react';
 
 
 const BandsListContext = React.createContext({
-  setBandsList: () => { },
   setActiveBand: () => { },
+  setBandsList: () => { },
   setBandMembers: () => { },
-  setBandSetlists: () => { },
   setBandRepertoire: () => { },
+  setBandSetlists: () => { },
+  setSelectedSetlist: () => { },
   setError: () => { },
   clearError: () => { },
-  bandsList: [],
-  error: null,
-  bandMembers: [],
-  activeUser: '',
   activeBand: '',
-  usersBands: [],
+  activeUser: '',
+  bandsList: [],
+  bandMembers: [],
+  bandRepertoire: [],
   bandSetlists: [],
-  bandRepertoire: []
+  error: null,
+  selectedSetlist: {},
+  usersBands: []
 });
 
 export default BandsListContext;
@@ -32,7 +34,8 @@ export class BandsListProvider extends Component {
     activeBand: '',
     usersBands: [],
     bandSetlists: [],
-    bandRepertoire: []
+    bandRepertoire: [],
+    selectedSetlist: {}
   };
 
 
@@ -59,6 +62,10 @@ export class BandsListProvider extends Component {
     this.setState({ bandSetlists })
   }
 
+  setSelectedSetlist = (setlist) => {
+    this.setState({ setlist })
+  }
+
   setBandRepertoire = (bandRepertoire) => {
     this.setState({ bandRepertoire })
   }
@@ -82,6 +89,7 @@ export class BandsListProvider extends Component {
       bandsList: this.state.bandsList,
       bandSetlists: this.state.bandSetlists,
       error: this.state.error,
+      selectedSetlist: this.state.selectedSetlist,
       usersBands: this.state.usersBands,
       clearError: this.clearError,
       setActiveBand: this.setActiveBand,
@@ -90,6 +98,7 @@ export class BandsListProvider extends Component {
       setBandSetlists: this.setBandSetlists,
       setBandRepertoire: this.setBandRepertoire,
       setError: this.setError,
+      setSelectedSetlist: this.setSelectedSetlist,
       setUsersBands: this.setUsersBands
     }
     return (

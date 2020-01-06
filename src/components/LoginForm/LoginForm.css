@@ -1,9 +1,28 @@
 Input {
-  max-width: 400px;
+  max-width: 350px;
   margin-right: auto;
   margin-left: auto;
 }
 
+div, Button {
+  font-family: 'Muli', sans-serif;
+}
+
 .red {
   color: red;
+}
+
+.LoginForm {
+  font-weight: bold;
+}
+
+#login-submit-button {
+  background-color: white;
+}
+
+#login-register-button {
+  border: 1px thin grey;
+  border-radius: 20px;
+  margin-left: 6px;
+  list-style-type: none;
 }

@@ -11,7 +11,7 @@ export default class BandRegistrationForm extends Component {
 
   state = { error: null };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     console.log('handle submit band registration form');
     const { band_name, city, state, country, description } = e.target;

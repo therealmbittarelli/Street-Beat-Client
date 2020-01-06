@@ -14,16 +14,22 @@ export default class UsersBands extends Component {
   }
 
   handleSetActiveBand = () => {
-    console.log('we made it here');
     return this.context.setActiveBand(this.props.id)
   }
 
   render() {
+    const band_name = this.props.band_name;
     return (
       <div key={this.props.id}>
         <Link
-          to={`/dashboard/band/${this.props.id}`}
+          to={{
+            pathname: `/dashboard/band/${this.props.id}`,
+            state: {
+              band_name: band_name,
+            }
+          }}
           onClick={this.handleSetActiveBand}
+
         >{this.props.band_name}</Link>
       </div>
     )

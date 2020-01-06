@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "../ShuttleBox/ShuttleBox.css";
 // import Draggable from 'react-draggable';
 
 
@@ -21,7 +22,7 @@ class IndividualSong extends Component {
   render() {
 
     return (
-      <option song_Id={this.props.id} band_Id={this.props.band_id}>
+      <option key={this.props.id} className="shuttle-box-song" duration={this.props.duration} song_id={this.props.id} band_id={this.props.band_id}>
         {this.props.title}, {this.props.artist}, {this.props.duration}
       </option>
     );

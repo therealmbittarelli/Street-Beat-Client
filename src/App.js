@@ -10,6 +10,7 @@ import SelectedSetlist from './routes/SelectedSetlist';
 import CreateSetlist from "./routes/CreateSetlist";
 import LoginFail from './routes/LoginFail';
 import RegisterBand from './routes/RegisterBand';
+import AllSongs from './routes/AllSongs';
 import PrivateRoute from './components/Utils/PrivateRoute';
 import PublicOnlyRoute from './components/Utils/PublicOnlyRoute';
 import { Route, Switch } from "react-router-dom";
@@ -68,6 +69,11 @@ class App extends Component {
               exact
               path={'/dashboard/band/:bandId/setlist'}
               component={SelectedSetlist}
+            />
+            <PrivateRoute
+              exact
+              path={'/dashboard/band/:bandId/songs'}
+              component={AllSongs}
             />
             <PrivateRoute
               exact

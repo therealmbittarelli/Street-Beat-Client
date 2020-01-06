@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SavedSetlist from './SavedSetlist';
+import NavBar from '../components/NavBar/NavBar';
 import TokenService from '../services/token-service.js'
 import BandsListContext from '../Context';
 import config from '../config';
@@ -40,14 +40,23 @@ export default class AllSetlists extends Component {
     const bandId = this.props.match.params.bandId;
 
     console.log('this context setlists is', allSavedSetlists);
+    console.log('all setlists bandid is', bandId);
+
     return allSavedSetlists.map((setlist) => {
       console.log('allsaved map,', setlist)
-      return <SavedSetlist
-        setlistId={setlist.id}
-        title={setlist.title}
-        date={setlist.date}
-        bandId={bandId}
-      />
+
+      return <Link
+        to={{
+          pathname: `/dashboard/band/${bandId}/setlist`,
+          state: {
+            title: setlist.title,
+            date: setlist.date,
+            setlist_id: setlist.id,
+          }
+        }}
+      >{`${setlist.title}, ${setlist.date}`}
+        <p />
+      </Link>
     });
   }
 
@@ -56,8 +65,8 @@ export default class AllSetlists extends Component {
     const bandId = this.props.match.params.bandId;
     return (
       <div>
-        {/* need to populate list of setlists */}
-        <section list="true" className="members_list">
+        <NavBar bandId={bandId} />
+        <section list="true" className="saved-setlists">
           {error
             ? <p className='red'>Something went wrong. Please try again</p>
             : this.renderSavedSetlists()}

@@ -18,6 +18,7 @@ class BandResult extends Component {
     console.log('clicked join band');
     const authToken = TokenService.getAuthToken();
     const url = `${config.API_ENDPOINT}/bands/${this.props.id}/join`;
+    console.log('url is', url);
 
     fetch(url, {
       method: "POST",
@@ -29,7 +30,6 @@ class BandResult extends Component {
       .then(res => res.json())
       .then(data => {
         console.log('POST req to add member to band successful:', data);
-
       });
   }
   render() {
