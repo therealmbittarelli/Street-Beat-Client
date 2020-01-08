@@ -24,13 +24,14 @@ export default class Header extends Component {
     return (
       <div className='not-logged-in'>
         <Link
-          to='/'>
-          Log in
-        </Link>
-        <Link
           to='/register'>
           Register
         </Link>
+        <Link
+          to='/'>
+          Log in
+        </Link>
+
       </div>
     )
   }
@@ -38,15 +39,18 @@ export default class Header extends Component {
   render() {
     return (
       <nav className='Header'>
+        <section id="login-register-links-container">
+          {TokenService.hasAuthToken()
+            ? this.renderLogoutLink()
+            : this.renderLoginLink()}
+        </section>
         <h1>
-          <Link to='/dashboard/user'>
-            {/* {' '} */}
-            Street Beat
+          <Link
+            id="street-beat-header"
+            to='/dashboard/user'>
+            <span className="purple">St</span><span className="gold">re</span><span id="green">et</span><span className="gold">Be</span><span className="purple">at</span>
           </Link>
         </h1>
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
       </nav>
     )
   }

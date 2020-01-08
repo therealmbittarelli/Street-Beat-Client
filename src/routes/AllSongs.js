@@ -6,6 +6,7 @@ import TokenService from '../services/token-service.js'
 import BandsListContext from '../Context';
 import config from '../config';
 import AuthApiService from '../services/auth-api-service';
+import './AllSongs.css';
 
 
 export default class AllSongs extends Component {
@@ -60,7 +61,6 @@ export default class AllSongs extends Component {
     const { title, artist, duration } = e.target;
     const bandId = this.props.match.params.bandId;
 
-
     this.setState({ error: null });
     console.log(title, artist, duration);
 
@@ -86,10 +86,11 @@ export default class AllSongs extends Component {
   render() {
     const { error } = this.context;
     const bandId = this.props.match.params.bandId;
+    console.log('bandId is', bandId);
     return (
       <div>
-        <h2>Repertoire</h2>
         <NavBar bandId={bandId} />
+        <h2>Repertoire</h2>
         <div role='alert'>
           {error && <p className='red'>{'Something went wrong. Please try again.'}</p>}
         </div>
@@ -99,13 +100,12 @@ export default class AllSongs extends Component {
         <section id="add-song-container">
           <h3>Add a song</h3>
           <form
-            id="add-new-song"
             onSubmit={this.handleSubmit}
           >
             <label htmlFor="song-title">Title</label>
             <Input
               type="text"
-              name="song-title"
+              name="title"
               id="song-title"
               placeholder="War">
             </Input>
@@ -113,7 +113,7 @@ export default class AllSongs extends Component {
             <label htmlFor="song-artist">Artist</label>
             <Input
               type="text"
-              name="song-artist"
+              name="artist"
               id="song-artist"
               placeholder="Hypnotic Brass Ensemble">
             </Input>
@@ -121,11 +121,12 @@ export default class AllSongs extends Component {
             <label htmlFor="song-length">Duration</label>
             <Input
               type="text"
-              name="song-duration"
+              name="duration"
               id="song-duration"
               placeholder="whole numbers only, eg: 3">
             </Input>
             <Button
+              id="add-song-button"
               type="submit"
             >
               Submit

@@ -14,7 +14,7 @@ import AllSongs from './routes/AllSongs';
 import PrivateRoute from './components/Utils/PrivateRoute';
 import PublicOnlyRoute from './components/Utils/PublicOnlyRoute';
 import { Route, Switch } from "react-router-dom";
-// import Context from "./Context";
+import './App.css';
 
 // revisit .env to update API KEY 
 

@@ -5,6 +5,7 @@ import TokenService from '../services/token-service.js'
 import BandsListContext from '../Context';
 import config from '../config';
 import BandSearch from '../components/BandSearch/BandSearch';
+import './UserDashboard.css';
 
 class UserDashboard extends Component {
   constructor(props) {
@@ -53,16 +54,18 @@ class UserDashboard extends Component {
 
     return (
       <div>
-        <h2>User dashboard</h2>
+        <h2 id="user-dash-heading">Click below to navigate to a band's landing page:</h2>
         <section list="true" className="BandsList">
           {error
             ? <p className='red'>Something went wrong. Please try again</p>
             : this.renderUsersBands()}
         </section>
-        <BandSearch />
+        <section id="band-search-to-join">
+          <BandSearch />
+        </section>
         <section id="add-band-container">
           <p>Don't see your band listed?</p>
-          <Link to={'/registerband'}>Add it!</Link>
+          <Link id="add-band-link" to={'/registerband'}>Add it!</Link>
         </section>
       </div>
     );

@@ -1,14 +1,39 @@
 #left {
-  width: 150px;
-  height: 200px;
+  width: 250px;
+  height: 350px;
 }
 
 #right {
-  width: 150px;
-  height: 200px;
+  width: 250px;
+  height: 350px;
 }
 
 option {
-  width: 150px;
-  text-align: center;
+  width: 300px;
+}
+
+.shuttle-box-song {
+  /* text-align: center; */
+}
+
+.shuttle-box-song:focus {
+  background-color: #D4AF37;
+}
+
+#shuttle-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+#controls{
+  margin-top: 100px;
+}
+
+.controls {
+  background-color: green;
+}
+
+#counter-text {
+  font-size: 20px;
 }

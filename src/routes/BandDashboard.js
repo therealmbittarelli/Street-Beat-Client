@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import BandMembers from '../components/BandMembers/BandMembers';
-// import { Button } from '../components/Utils/Utils';
 import NavBar from '../components/NavBar/NavBar';
 import TokenService from '../services/token-service.js'
 import BandsListContext from '../Context';
@@ -12,8 +10,6 @@ class BandDashboard extends Component {
 
   // constructor(props) {
   //   super(props)
-
-
   // }
   static contextType = BandsListContext;
 
@@ -34,9 +30,7 @@ class BandDashboard extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('data dashboard is', data);
         this.context.setBandMembers(data);
-
       });
   }
 
@@ -47,35 +41,32 @@ class BandDashboard extends Component {
         key={member.id}
         first_name={member.first_name}
         last_name={member.last_name}
+        band_name={member.band_name}
       />
     );
   }
 
-  // goBack = () => {
-  //   console.log('this.history', this.props.history.goBack());
-  //   this.props.history.goBack();
-
-  // }
+  renderBandName = () => {
+    if (this.context.bandMembers.length > 0) {
+      let bandName = this.context.bandMembers[0].band_name;
+      return <h2>{bandName} Dashboard</h2>;
+    }
+  }
 
   render() {
     const { error } = this.context;
     const bandId = this.props.match.params.bandId;
-
     return (
-      <div>
-        <h2>{this.props.location.state.band_name} Dashboard</h2>
+      <div id="band-dash-container">
         <NavBar bandId={bandId} />
-        {/* <Button
-          type="submit"
-          onClick={this.goBack}>Back</Button> */}
-        <h3>Welcome! This space can be used for admin announcements, but for now it will serve to invite you to check out other members in this band, and navigate to the setlist builder to try out creating and saving down a setlist!</h3>
-        <section list="true" className="members_list">
+        {this.renderBandName()}
+        <h3 id="admin-announcements">Welcome! This space can be used for site-admin announcements, but for now it will serve to invite you to check out other members in this band, and navigate to the setlist builder to try out creating and saving down a setlist!</h3>
+        <section list="true" className="members-list">
+          Members
           {error
             ? <p className='red'>Something went wrong. Please try again</p>
             : this.renderBandMembers()}
         </section>
-        <p>Little comment</p>
-        <Link to={`/dashboard/band/${bandId}/setlists`}>Setlist tool</Link>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { Button } from '../Utils/Utils';
 import TokenService from '../../services/token-service.js'
 import BandsListContext from '../../Context';
 import config from '../../config';
+import '../../routes/UserDashboard.css';
 
 class BandResult extends Component {
 
@@ -35,10 +36,13 @@ class BandResult extends Component {
   render() {
     return (
       <div>
-        <p>{this.props.band_name}</p>
-        <Button type='submit'
+        <div id="band-search-result">
+          <p>{this.props.band_name}</p>
+        </div >
+        <Button id="join-band-button" type='submit'
           onClick={(e) => this.handleSubmit(e)}>Join band</Button>
-      </div >
+
+      </div>
     );
   }
 }

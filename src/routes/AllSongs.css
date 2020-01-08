@@ -1,0 +1,29 @@
+.band-repertoire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.repertoire-song {
+  border: 2px dashed;
+  border-top-color: #06BC40;
+  border-bottom-color: #D4AF37;
+  border-left-color: #5b009e;
+  border-right-color: #5b009e;
+  width: 200px;
+  max-height: 150px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#add-song-container {
+  margin-top: 60px;
+}
+
+#add-song-button {
+  background-color: white;
+  border: 2px dotted black;
+  border-radius: 5px;
+}

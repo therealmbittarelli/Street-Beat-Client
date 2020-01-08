@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input, Required } from '../Utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
+import './RegistrationForm.css';
 
 
 export default class RegistrationForm extends Component {
@@ -90,7 +91,9 @@ export default class RegistrationForm extends Component {
             id='RegistrationForm_password'>
           </Input>
         </div>
-        <Button type='submit'>
+        <Button
+          id="user-registration-submit-button"
+          type='submit'>
           Submit
         </Button>
       </form>

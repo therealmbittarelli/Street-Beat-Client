@@ -51,8 +51,8 @@ const AuthApiService = {
       );
   },
 
-  postSong(song) {
-    return fetch(`${config.API_ENDPOINT}/bands/1/songs`, {
+  postSong(bandId, song) {
+    return fetch(`${config.API_ENDPOINT}/bands/${bandId}/songs`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

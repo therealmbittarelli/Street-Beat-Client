@@ -105,17 +105,32 @@ class ShuttleBox extends Component {
 
     return (
       <div id="shuttle-container" >
-        <select className="left_select" multiple="multiple" id="left">
-          {this.renderSongs()}
-        </select>
-        <input type="button" value="<" onClick={this.move_left} />
-        <input type="button" value="<<" onClick={this.move_all_left} />
-        <input type="button" value=">>" onClick={this.move_all_right} />
-        <input type="button" value=">" onClick={this.move_right} />
-        <input type="button" value="^" onClick={this.move_up} />
-        <input type="button" value="V" onClick={this.move_down} />
-        <select multiple="multiple" id="right"></select>
-
+        <section id="left-shuttle-container">
+          Repertoire list
+          <br />
+          <select className="left_select" multiple="multiple" id="left">
+            {this.renderSongs()}
+          </select>
+        </section>
+        <section id="controls">
+          <input type="button" className="controls" value=">" onClick={this.move_right} />
+          <br />
+          <input type="button" className="controls" value="<" onClick={this.move_left} />
+          <br />
+          <input type="button" className="controls" value=">>" onClick={this.move_all_right} />
+          <br />
+          <input type="button" className="controls" value="<<" onClick={this.move_all_left} />
+          <br />
+          <br />
+          <input type="button" className="controls" value="^" onClick={this.move_up} />
+          <br />
+          <input type="button" className="controls" value="V" onClick={this.move_down} />
+        </section>
+        <section id="right-shuttle-container">
+          Setlist
+          <br />
+          <select multiple="multiple" id="right"></select>
+        </section>
 
       </div >
     );

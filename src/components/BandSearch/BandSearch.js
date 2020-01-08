@@ -4,6 +4,7 @@ import config from '../../config';
 import TokenService from '../../services/token-service.js'
 import BandResult from './BandResult';
 import BandsListContext from '../../Context';
+import '../../routes/UserDashboard.css';
 
 
 class BandSearch extends Component {
@@ -74,8 +75,8 @@ class BandSearch extends Component {
       <form
         className='search'
         onSubmit={this.handleSubmit}>
-        <label htmlFor='band_search_bar'>
-          Search for a band that you're in
+        <label id="band-search-text" htmlFor='band_search_bar'>
+          Did you join or start a new band? <br /> Search to see if it's registered on Street Beat!
         </label>
         <Input
           name='band_search'
@@ -86,10 +87,11 @@ class BandSearch extends Component {
           placeholder='Fly By Brass Band'>
         </Input>
         <Button
+          id='band-search-button'
           type='submit'>
           Search
         </Button>
-        <section list="true" className="BandsList">
+        <section list="true" id="bands-list">
           {error
             ? <p className='red'>Something went wrong. Please try again</p>
             : this.renderSearchResults()}

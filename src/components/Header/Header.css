@@ -4,20 +4,39 @@
   flex-direction: row;
   justify-content: center;
 } */
- 
-h1 {
+
+
+#street-beat-header {
   margin-top: 85px;
   font-family: 'Gochi Hand', cursive;
-  font-size: 50px;
+  font-size: 80px;
 }
 
+.purple {
+  color: #5b009e;
+}
+
+#green {
+  color: #06BC40;
+}
+
+.gold {
+  color: #D4AF37;
+}
+
+/* #goldg {
+  color: #EDC967;
+} */
+
 .Header a {
-  color: #444;
   text-decoration: none;
 }
 
+#login-register-links-container {
+  /* margin-right: -90px; */
+}
+
 .not-logged-in {
-  position: fixed;
   margin: 25px;
   top: 0;
   width: 92%;
@@ -27,8 +46,8 @@ h1 {
   float: right;
   display: block;
   text-align: start;
-  padding: 14px;
-  /* text-decoration: none; */
+  color: green;
+  margin-left: 15px;
 }
 
 .not-logged-in a:hover {
@@ -36,18 +55,17 @@ h1 {
 }
 
 .logged-in {
-  position: fixed;
   margin: 25px;
   top: 0;
-  width: 92%;
+  width: 97%;
 }
 
 .logged-in a {
   float: right;
   display: block;
   text-align: start;
-  padding: 14px;
-  /* text-decoration: none; */
+  color: green;
+
 }
 
 .logged-in a:hover {

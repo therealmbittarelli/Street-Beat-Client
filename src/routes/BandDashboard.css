@@ -1,3 +1,21 @@
-* {
-  color: black;
+.individual-bandmember {
+  color: #5b009e;
+  font-weight: bold;
+  font-size: 16;
+
+}
+
+#admin-announcements {
+  color:black;
+  border: 2px dashed #D4AF37;
+}
+
+#band-dash-container {
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.members-list {
+  float: left;
+  border: 1px solid #06BC40;
 }

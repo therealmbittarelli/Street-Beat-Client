@@ -2,27 +2,31 @@
   list-style-type: none;
 }
 
-#nav-bar {
-  position: fixed;
-  top: 0;
-  width: 94%;
-  margin-top: 50px;
+.nav-link-text {
+  text-decoration: none;
+  color: green;
 }
 
-#nav-bar a {
-  float: right;
-  display: block;
-  text-align: start;
-  padding: 14px;
-  /* text-decoration: none; */
+.nav-link-text:hover {
+  color: grey;
 }
 
-#nav-bar a:hover {
-  color: black;
+.nav-link-text:active {
+  color: grey;
 }
 
-li {
-  display:inline;
-  margin-left: 7px;
-  margin-right: 7px;
+#nav-bar-container {
+  display: flex;
+  direction: column;
+  justify-content: center;
+  margin-top: -25px;
+}
+
+.songs {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.band {
+  margin-left: 25px;
 }

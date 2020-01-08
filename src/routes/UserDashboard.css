@@ -1,0 +1,85 @@
+/* UserDashboard */
+
+#band-search-to-join {
+  margin-top: 80px; 
+}
+
+#user-dash-heading {
+  margin-top: -20px;
+}
+
+#add-band-container {
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+#add-band-link {
+  text-decoration: none;
+  font-size: 18px;
+  color: green;
+}
+
+/* UserBands */
+
+#user-list-of-bands {
+  margin: 10px;
+}
+
+#band-links {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  color:#5b009e;
+  /* border: 7px dotted; */
+  border: 2px dashed;
+  border-top-color: #06BC40;
+  border-bottom-color: #D4AF37;
+  border-left-color: #5b009e;
+  border-right-color: #5b009e;
+  max-width: 60px;
+  max-height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#band-links:visited {
+  color:#5b009e;
+}
+
+#band-links:hover {
+  color: grey;
+}
+
+#band-links:active {
+  color: grey;
+}
+
+/* BandSearch */
+
+#band-search-text {
+  font-size: 18px;
+}
+
+#band-search-button {
+  background-color: white;
+  border: 2px dotted black;
+  border-radius: 5px;
+}
+
+/* BandResult */
+
+#band-search-result {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#band-search-result p {
+  color:#5b009e;
+}
+
+#join-band-button {
+  background-color: white;
+  border: 2px dotted black;
+  border-radius: 5px;
+  margin-top: -25px;
+}
