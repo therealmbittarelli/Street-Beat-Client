@@ -36,10 +36,7 @@ class CreateSetlist extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('data is', data);
         this.context.setBandRepertoire(data);
-        console.log('repertoire is', this.context.bandRepertoire);
-
       });
   }
 
@@ -47,11 +44,9 @@ class CreateSetlist extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     const { title, date } = e.target;
     const bandId = this.props.match.params.bandId;
     const setlistDuration = this.state.setlistDuration;
-    console.log(title.value, date.value);
 
     AuthApiService.postSetlist(bandId, {
       title: title.value,
@@ -74,20 +69,16 @@ class CreateSetlist extends Component {
         song.getAttribute("duration")
       );
     });
-
-    console.log('array of duration is', bandRepDurationArr)
     let bandRepDurationArrNum = bandRepDurationArr.map((element) => {
       return parseInt(element, 10);
     })
 
     let totalDuration = () => {
-      console.log('bandrep', bandRepDurationArrNum);
       if (bandRepDurationArrNum.length > 0) {
         const reducer = (acc, cur) => acc + cur;
         return bandRepDurationArrNum.reduce(reducer);
       }
     }
-    console.log('totalduration is', totalDuration())
     this.setState({
       setlistDuration: totalDuration()
     });
@@ -96,7 +87,6 @@ class CreateSetlist extends Component {
   render() {
     // const { error } = this.context;
     const bandId = this.props.match.params.bandId;
-    console.log('bandId is', bandId);
 
 
     return (
@@ -107,17 +97,6 @@ class CreateSetlist extends Component {
           className='create-setlist-form'
           onSubmit={this.handleSubmit}
         >
-          <Button
-            id="create-setlist-submit"
-            type="submit"
-          >
-            Save new setlist
-        </Button>
-          <Link
-            id="create-setlist-add-song"
-            to={`/dashboard/band/${bandId}/songs`}>
-            Add song
-              </Link>
           <div id="title-container">
             <label htmlFor='title'>Name your setlist*
           <Input
@@ -141,20 +120,35 @@ class CreateSetlist extends Component {
             </label>
           </div>
           <div id="shuttle-instructions">
-            Use the controls below to move tunes into the setlist box
+            Use the controls below to move tunes into the setlist box*
         <br />
           </div>
           <ShuttleBox
             bandId={bandId}
             songs={this.context.bandRepertoire}
             durationCounter={this.setlistDurationCounter} />
+          <section id="counter-text">
+            {this.state.error
+              ? <p className='red'>Something went wrong. Please try again</p>
+              : <div></div>}
+            {this.state.setlistDuration > 0 && <p>Setlist duration: <span className="purple">{this.state.setlistDuration} min</span></p>}
+          </section>
+          <Button
+            id="create-setlist-submit"
+            type="submit"
+          >
+            Save new setlist
+        </Button>
+          <br />
+          <div id="add-song-button-container">
+            <p id="add-song-text">Have a new tune to add to your repertoire?</p>
+            <Link
+              id="create-setlist-add-song"
+              to={`/dashboard/band/${bandId}/songs`}>
+              Add song
+          </Link>
+          </div>
         </form>
-        <section id="counter-text">
-          {this.state.error
-            ? <p className='red'>Something went wrong. Please try again</p>
-            : <div></div>}
-          {this.state.setlistDuration > 0 && <p>Setlist duration: <span className="purple">{this.state.setlistDuration} min</span></p>}
-        </section>
 
       </div >
     );

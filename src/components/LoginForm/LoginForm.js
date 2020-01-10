@@ -18,10 +18,8 @@ export default class LoginForm extends Component {
 
   handleSubmitJwtAuth(e) {
     e.preventDefault();
-    console.log('handlesubmitjwtauth has started');
     this.setState({ error: null });
     const { email, password } = e.target;
-    console.log('email and password are', email.value, password.value);
     AuthApiService.postLogin({
       email: email.value,
       password: password.value
@@ -30,12 +28,11 @@ export default class LoginForm extends Component {
         email.value = '';
         password.value = '';
         TokenService.saveAuthToken(res.authToken);
-        console.log('res is', res);
         this.props.onLoginSuccess();
+        this.context.setLoggedIn(true);
       })
       .catch((res) => {
         this.setState({ error: res.error });
-        console.log('we got an error');
         this.props.onLoginFail();
       });
   }

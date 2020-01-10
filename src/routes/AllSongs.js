@@ -56,27 +56,21 @@ export default class AllSongs extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handle submit song form');
-    console.log('e.target is', e.target);
     const { title, artist, duration } = e.target;
     const bandId = this.props.match.params.bandId;
-
     this.setState({ error: null });
-    console.log(title, artist, duration);
 
     AuthApiService.postSong(bandId, {
       title: title.value,
       artist: artist.value,
-      duration: duration.value
+      duration: duration.value,
+      band_id: bandId
     })
       .then((data) => {
-        console.log('song is', data);
         title.value = '';
         artist.value = '';
         duration.value = '';
         this.setState({ songs: [...this.state.songs, data] })
-        console.log('data is', data);
-
       })
       .catch(res => {
         this.setState({ error: res.error });
@@ -86,7 +80,7 @@ export default class AllSongs extends Component {
   render() {
     const { error } = this.context;
     const bandId = this.props.match.params.bandId;
-    console.log('bandId is', bandId);
+
     return (
       <div>
         <NavBar bandId={bandId} />
@@ -94,9 +88,6 @@ export default class AllSongs extends Component {
         <div role='alert'>
           {error && <p className='red'>{'Something went wrong. Please try again.'}</p>}
         </div>
-        <section list="true" className="band-repertoire">
-          {this.renderBandRepertoire()}
-        </section>
         <section id="add-song-container">
           <h3>Add a song</h3>
           <form
@@ -132,6 +123,9 @@ export default class AllSongs extends Component {
               Submit
             </Button>
           </form>
+        </section>
+        <section list="true" className="band-repertoire">
+          {this.renderBandRepertoire()}
         </section>
       </div>
     );

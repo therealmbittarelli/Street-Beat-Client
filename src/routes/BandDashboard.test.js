@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import BandDashboard from './BandDashboard';
 import { BrowserRouter } from 'react-router-dom';
+
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
+  let match = {
+    params: ''
+  };
   ReactDOM.render(<BrowserRouter>
-    <App />
+    <BandDashboard match={match} />
   </BrowserRouter>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

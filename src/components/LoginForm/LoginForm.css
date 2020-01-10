@@ -29,3 +29,7 @@ div, Button {
   padding: 9px;
   text-decoration: none;
 }
+
+#app-description {
+  font-style: italic;
+}

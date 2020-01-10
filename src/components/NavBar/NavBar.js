@@ -14,7 +14,6 @@ class NavBar extends Component {
 
   render() {
     const bandId = this.props.bandId;
-    console.log('navbar bandid is', bandId);
 
     return (
       <div>

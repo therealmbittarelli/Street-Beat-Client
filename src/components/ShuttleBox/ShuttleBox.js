@@ -87,8 +87,6 @@ class ShuttleBox extends Component {
 
   renderSongs = () => {
     const bandRepertoire = this.props.songs;
-    // const bandId = this.props.match.params.bandid;
-    console.log('bandRepertoire is', bandRepertoire);
     return bandRepertoire.map((song) => {
 
       return <IndividualSong
@@ -127,7 +125,7 @@ class ShuttleBox extends Component {
           <input type="button" className="controls" value="V" onClick={this.move_down} />
         </section>
         <section id="right-shuttle-container">
-          Setlist
+          Setlist*
           <br />
           <select multiple="multiple" id="right"></select>
         </section>

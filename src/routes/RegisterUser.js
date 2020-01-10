@@ -11,6 +11,7 @@ class RegisterUser extends Component {
 
   handleRegisterSuccess = () => {
     const { history } = this.props;
+    console.log('handleRegisterSuccess reached');
     // const destination = (location.state || {}).from || '/';
     history.push('/');
   }
@@ -22,7 +23,7 @@ class RegisterUser extends Component {
       <Section className='RegisterUser'>
         <h2>Register</h2>
         <RegistrationForm
-          onRegisterSuccess={this.handleRegisterSuccess}
+          onRegisterSuccess={() => this.handleRegisterSuccess()}
         />
       </Section>
     )

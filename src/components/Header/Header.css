@@ -24,22 +24,15 @@
   color: #D4AF37;
 }
 
-/* #goldg {
-  color: #EDC967;
-} */
-
 .Header a {
   text-decoration: none;
 }
 
-#login-register-links-container {
-  /* margin-right: -90px; */
-}
-
 .not-logged-in {
-  margin: 25px;
+  margin-top: 25px;
+  margin-bottom: 35px;
   top: 0;
-  width: 92%;
+  width: 94%;
 }
 
 .not-logged-in a {
@@ -51,13 +44,14 @@
 }
 
 .not-logged-in a:hover {
-  color: black;
+  color: grey;
 }
 
 .logged-in {
-  margin: 25px;
+  margin-top: 25px;
+  margin-bottom: 35px;
   top: 0;
-  width: 97%;
+  width: 94%;
 }
 
 .logged-in a {

@@ -14,7 +14,6 @@ export default class BandMembers extends Component {
 
 
   render() {
-    console.log('this.props is', this.props);
     return (
       <div className="individual-bandmember" key={this.props.id}>
         {`${this.props.first_name} ${this.props.last_name}`}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Input, Required } from '../Utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
+import '../../routes/RegisterBand.css';
 
 
 export default class BandRegistrationForm extends Component {
@@ -13,11 +14,8 @@ export default class BandRegistrationForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handle submit band registration form');
     const { band_name, city, state, country, description } = e.target;
-
     this.setState({ error: null });
-    console.log(band_name, city, state, country, description);
 
     AuthApiService.postBand({
       band_name: band_name.value,
@@ -27,7 +25,6 @@ export default class BandRegistrationForm extends Component {
       description: description.value
     })
       .then((band) => {
-        console.log('band is', band);
         band_name.value = '';
         city.value = '';
         state.value = '';
@@ -103,10 +100,14 @@ export default class BandRegistrationForm extends Component {
             id='BandRegistrationForm_description'>
           </Input>
         </div>
-        <Button type='submit'>
+        <Button
+          id="band-register-button"
+          type='submit'>
           Register
         </Button>
-        <Link to={'/dashboard/user'}>
+        <Link
+          id="band-register-back"
+          to={'/dashboard/user'}>
           Back
         </Link>
       </form>

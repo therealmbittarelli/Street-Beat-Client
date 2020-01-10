@@ -82,7 +82,6 @@ const AuthApiService = {
       newSetlist: setlist,
       songsToAdd: songsToSave
     });
-    console.log('setlistjson', setlistJSON);
     return fetch(`${config.API_ENDPOINT}/bands/${bandId}/setlists/create`, {
       method: 'POST',
       headers: {

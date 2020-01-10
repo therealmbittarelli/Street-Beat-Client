@@ -9,10 +9,10 @@ import './UserDashboard.css';
 
 class UserDashboard extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      usersBands: []
+      myBands: []
     }
   }
   static contextType = BandsListContext;
@@ -33,13 +33,17 @@ class UserDashboard extends Component {
       .then(data => {
         this.context.setUsersBands(data);
         this.context.setBandsList(data);
-        console.log('')
+
       })
       .catch(console.log);
   }
 
+  // updateMyBands = (newBand) => {
+  //   this.setState({ myBands: [...this.state.myBands, newBand] })
+  // }
   renderUsersBands = () => {
     const bandsUserIsIn = this.context.usersBands;
+
     return bandsUserIsIn.map(band =>
 
       < UsersBands

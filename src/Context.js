@@ -20,7 +20,9 @@ const BandsListContext = React.createContext({
   bandSetlists: [],
   error: null,
   selectedSetlist: {},
-  usersBands: []
+  usersBands: [],
+  loggedIn: null,
+  setLoggedIn: () => { }
 });
 
 export default BandsListContext;
@@ -35,7 +37,8 @@ export class BandsListProvider extends Component {
     usersBands: [],
     bandSetlists: [],
     bandRepertoire: [],
-    selectedSetlist: {}
+    selectedSetlist: {},
+    loggedIn: null
   };
 
 
@@ -79,6 +82,11 @@ export class BandsListProvider extends Component {
     this.setState({ error: null })
   }
 
+  setLoggedIn = (status) => {
+    this.setState({
+      loggedIn: status
+    })
+  }
 
   render() {
     const value = {
@@ -99,7 +107,9 @@ export class BandsListProvider extends Component {
       setBandRepertoire: this.setBandRepertoire,
       setError: this.setError,
       setSelectedSetlist: this.setSelectedSetlist,
-      setUsersBands: this.setUsersBands
+      setUsersBands: this.setUsersBands,
+      loggedIn: this.state.loggedIn,
+      setLoggedIn: this.setLoggedIn
     }
     return (
       <BandsListContext.Provider value={value}>

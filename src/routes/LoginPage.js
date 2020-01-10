@@ -10,7 +10,6 @@ class LoginPage extends Component {
   }
 
   handleLoginSuccess = () => {
-    console.log('handleLoginSuccess')
     const { history } = this.props;
     console.log('history is ', history)
     // const destination = (location.state || {}).from || '/';
@@ -27,6 +26,13 @@ class LoginPage extends Component {
   render() {
     return (
       <Section className='LoginPage'>
+        <p id="app-description">
+          Build and share setlists,
+          <br />
+          manage repertoire,
+          <br />
+          collaborate with bandmates!
+        </p>
         <h2>Login</h2>
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}

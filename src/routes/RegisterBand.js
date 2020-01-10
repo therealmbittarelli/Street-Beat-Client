@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BandRegistrationForm from '../components/BandRegistrationForm/BandRegistrationForm';
 import { Section } from '../components/Utils/Utils';
+import './RegisterBand.css';
 
 class RegisterBand extends Component {
   static defaultProps = {

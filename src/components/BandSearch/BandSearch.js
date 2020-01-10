@@ -23,8 +23,6 @@ class BandSearch extends Component {
   handleInput(e) {
     e.preventDefault();
     this.setState({ searchTerm: e.target.value });
-    console.log('this.state.searchTerm', this.state.searchTerm);
-    console.log('etargetvalue is', e.target.value)
   }
 
   formatQueryString(params) {
@@ -59,7 +57,6 @@ class BandSearch extends Component {
 
   renderSearchResults() {
     const results = this.state.searchResults;
-    console.log('results is', results);
     if (results.length > 0) {
       return results.map(result =>
         (<BandResult

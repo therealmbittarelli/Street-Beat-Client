@@ -5,12 +5,16 @@
   margin-top: 10px;
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 
 #create-setlist-add-song {
   padding: 8.5px;
   font-size: 17px;
-  cursor: pointer;
+}
+
+#add-song-text {
+  margin-bottom: 25px;
 }
 
 #title-container {

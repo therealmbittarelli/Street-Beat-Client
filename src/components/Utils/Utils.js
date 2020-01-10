@@ -1,11 +1,12 @@
 import React from 'react'
 import { format as formatDate, parseISO } from 'date-fns'
+
 import './Utils.css'
 
-export function NiceDate(date, format = 'dd/MM/yyyy') {
+export function NiceDate(date, format = 'MM/dd/yyyy') {
   date = parseISO(date)
-  console.log('date is', date);
   return formatDate(date, format)
+
 }
 
 export function Hyph() {

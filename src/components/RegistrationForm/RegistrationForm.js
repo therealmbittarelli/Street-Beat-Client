@@ -13,7 +13,6 @@ export default class RegistrationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log('handle submit');
     const { first_name, last_name, email, password } = e.target;
 
     this.setState({ error: null })
@@ -25,11 +24,10 @@ export default class RegistrationForm extends Component {
       password: password.value
     })
       .then(user => {
-        console.log('user is', user);
-        user.first_name.value = '';
-        user.last_name.value = '';
-        user.email.value = '';
-        user.password.value = '';
+        first_name.value = '';
+        last_name.value = '';
+        email.value = '';
+        password.value = '';
         this.props.onRegisterSuccess();
       })
       .catch(res => {
@@ -82,8 +80,12 @@ export default class RegistrationForm extends Component {
         </div>
         <div className='password'>
           <label htmlFor='RegistrationForm_password'>
-            Password <Required />
+            Password
+             <Required />
           </label>
+          <p id="password-text">8 or more characters, including <br />
+            at least one upper and lower case letter, <br />
+            number, and special character</p>
           <Input
             name='password'
             type='password'

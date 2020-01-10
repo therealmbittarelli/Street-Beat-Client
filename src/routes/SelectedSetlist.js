@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import { NiceDate } from '../components/Utils/Utils';
 import TokenService from '../services/token-service.js'
@@ -30,10 +29,7 @@ export default class SelectedSetlist extends Component {
     const authToken = TokenService.getAuthToken();
     const bandId = this.props.match.params.bandId;
     const setlistId = this.props.location.state.setlist_id
-    // const setlistId = this.props.match.params.setlistId;
-    console.log('this.setlist id: ', this.props.location.state.setlist_id);
     const url = `${config.API_ENDPOINT}/bands/${bandId}/setlists/${setlistId}`;
-    console.log('band dash endpoint is', url)
 
     fetch(url, {
       method: "GET",
@@ -64,10 +60,10 @@ export default class SelectedSetlist extends Component {
   }
 
   render() {
-    // const { error } = this.context;
     const bandId = this.props.match.params.bandId;
     const date = this.props.location.state.date;
-    console.log(this.state.songs);
+    console.log('date is', date);
+
     return (
       <div>
         <NavBar bandId={bandId} />
@@ -75,12 +71,9 @@ export default class SelectedSetlist extends Component {
         <h4>{NiceDate(date)}</h4>
         <section list="true" className="setlist-songs">
           {this.renderSelectedSetlist()}
-          {/* {error
-            ? <p className='red'>Something went wrong. Please try again</p>
-            : this.renderSelectedSetlist()} */}
         </section>
         <div id="saved-setlist-duration">
-          <p id="saved-setlist-duration-text">Setlist length: {this.state.setlistDuration}</p>
+          <p id="saved-setlist-duration-text">Setlist length: <span className="purple">{this.state.setlistDuration} min</span></p>
         </div>
       </div>
     )

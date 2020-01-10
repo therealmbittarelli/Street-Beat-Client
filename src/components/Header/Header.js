@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import TokenService from '../../services/token-service'
-import './Header.css'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-service';
+import BandsListContext from '../../Context';
+import './Header.css';
 
 export default class Header extends Component {
+
+  static contextType = BandsListContext;
+
   handleLogoutClick = () => {
-    TokenService.clearAuthToken()
+    TokenService.clearAuthToken();
+    this.context.setLoggedIn(false);
   }
 
   renderLogoutLink = () => {

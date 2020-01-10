@@ -32,7 +32,6 @@ export default class AllSetlists extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('data is', data);
         this.context.setBandSetlists(data);
       });
   }
@@ -41,12 +40,7 @@ export default class AllSetlists extends Component {
     const allSavedSetlists = this.context.bandSetlists;
     const bandId = this.props.match.params.bandId;
 
-    console.log('this context setlists is', allSavedSetlists);
-    console.log('all setlists bandid is', bandId);
-
     return allSavedSetlists.map((setlist) => {
-      console.log('allsaved map,', setlist)
-      console.log('setlist.date is', setlist.date)
       let date = NiceDate(setlist.date)
 
       return <div id="setlist-list">
@@ -70,7 +64,7 @@ export default class AllSetlists extends Component {
   render() {
     const { error } = this.context;
     const bandId = this.props.match.params.bandId;
-    console.log('bandId is', bandId);
+
     return (
       <div id="all-setlists-container">
         <NavBar bandId={bandId} />
