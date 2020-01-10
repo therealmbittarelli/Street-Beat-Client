@@ -58,7 +58,7 @@ export default class RegistrationForm extends Component {
         </div>
         <div className="last_name">
           <label htmlFor="RegistrationForm_last_name">
-            Last name
+            Last name <Required />
           </label>
           <Input
             name="last_name"
