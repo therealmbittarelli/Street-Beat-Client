@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import { Input, Button } from '../components/Utils/Utils';
 import NavBar from '../components/NavBar/NavBar';
 import TokenService from '../services/token-service.js'
@@ -31,7 +30,7 @@ export default class AllSongs extends Component {
     const url = `${config.API_ENDPOINT}/bands/${bandId}/songs`;
 
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -78,15 +77,14 @@ export default class AllSongs extends Component {
   }
 
   render() {
-    const { error } = this.context;
+    const { error } = this.state;
     const bandId = this.props.match.params.bandId;
-
     return (
       <div>
         <NavBar bandId={bandId} />
         <h2>Repertoire</h2>
-        <div role='alert'>
-          {error && <p className='red'>{'Something went wrong. Please try again.'}</p>}
+        <div role="alert">
+          {error && <p className="red">{'Something went wrong. Please try again.'}</p>}
         </div>
         <section id="add-song-container">
           <h3>Add a song</h3>

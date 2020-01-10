@@ -9,18 +9,20 @@ export default class UsersBands extends Component {
 
   static defaultProps = {
     band_name: '',
-    id: ''
+    id: '',
+    key: ''
   }
 
   handleSetActiveBand = () => {
-    return this.context.setActiveBand(this.props.id)
+    return this.context.setActiveBand(this.props.id);
   }
 
   render() {
     const band_name = this.props.band_name;
     return (
-      <div key={this.props.id} id="user-list-of-bands">
-        <Link id="band-links"
+      <div id="user-list-of-bands">
+        <Link
+          id="band-links"
           to={{
             pathname: `/dashboard/band/${this.props.id}`,
             state: {
@@ -31,6 +33,6 @@ export default class UsersBands extends Component {
 
         >{this.props.band_name}</Link>
       </div>
-    )
+    );
   }
 } 

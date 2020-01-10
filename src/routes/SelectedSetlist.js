@@ -32,7 +32,7 @@ export default class SelectedSetlist extends Component {
     const url = `${config.API_ENDPOINT}/bands/${bandId}/setlists/${setlistId}`;
 
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -53,7 +53,7 @@ export default class SelectedSetlist extends Component {
     }
     let songTags = [];
     for (let i = 0; i < songsInList.length; i++) {
-      songTags.push(<p><span className="purple">{songsInList[i].title}:</span> <span id="green-nav">{songsInList[i].artist}</span>, <span className="gold">{songsInList[i].duration} min</span></p>);
+      songTags.push(<p key={songsInList[i].song_position}><span className="purple">{songsInList[i].title}:</span> <span id="green-nav">{songsInList[i].artist}</span>, <span className="gold">{songsInList[i].duration} min</span></p>);
     }
 
     return songTags;
@@ -62,8 +62,6 @@ export default class SelectedSetlist extends Component {
   render() {
     const bandId = this.props.match.params.bandId;
     const date = this.props.location.state.date;
-    console.log('date is', date);
-
     return (
       <div>
         <NavBar bandId={bandId} />
@@ -76,6 +74,6 @@ export default class SelectedSetlist extends Component {
           <p id="saved-setlist-duration-text">Setlist length: <span className="purple">{this.state.setlistDuration} min</span></p>
         </div>
       </div>
-    )
+    );
   }
 }

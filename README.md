@@ -1,5 +1,7 @@
 # Street Beat
 
+![Image - Street Beat user dashboard] (https://gyazo.com/9516796d2cd7e58a9e336f0f7175f07f)
+
 ## Full-stack capstone project
 
 Street Beat is a site specifically designed for members of the international street band community - think guerrilla marching bands, a la New Orleans. On Street Beat, band members can sign up for an individual profile and use a private dashboard to manage the bands that they are in.  including repertoire list, a place to easily post set lists for gigs and practices,
@@ -10,3 +12,16 @@ My priorities revolve around band-facing functionality, but I eventually intend 
 
 I am so far uninterested in overseeing the community to the extent that would be required if chat/messaging were to be added, so for now, that will remain off the table.
 
+
+deployed app: https://street-beat-client.now.sh/
+server repo: https://github.com/thinkful-ei-iguana/maggie-fs-capstone-server
+client repo: https://github.com/thinkful-ei-iguana/maggie-fs-capstone-client
+
+documentation of api
+screenshots of app
+summary
+plans for the future
+section on tech used:
+>Front-End: ReactJS | CSS
+>Back-End: NodeJS | KnexJS | ExpressJS | PostgreSQL
+>Testing: Mocha | Chai

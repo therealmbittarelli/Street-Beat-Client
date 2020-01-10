@@ -12,22 +12,19 @@ class RegisterBand extends Component {
 
   handleRegisterSuccess = () => {
     const { history } = this.props;
-    // const destination = (location.state || {}).from || '/';
     history.push('/dashboard/user');
   }
 
-  // handleRegisterFail?
-
   render() {
     return (
-      <Section className='RegisterBand'>
+      <Section className="RegisterBand">
         <h2>Add a band</h2>
         <BandRegistrationForm
           onRegistrationSuccess={this.handleRegisterSuccess}
         />
       </Section>
-    )
+    );
   }
-};
+}
 
 export default RegisterBand;

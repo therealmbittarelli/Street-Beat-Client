@@ -10,8 +10,6 @@ class ShuttleBox extends Component {
     this.state = {
       items: []
     };
-
-
   }
 
   static defaultProps = {
@@ -21,7 +19,7 @@ class ShuttleBox extends Component {
   }
 
   move_up = () => {
-    const rightColumn = document.getElementById("right");
+    const rightColumn = document.getElementById('right');
     for (let i = 0; i < rightColumn.childNodes.length; i++) {
       if (rightColumn.childNodes[i].selected && i > 0) {
         rightColumn.insertBefore(rightColumn.childNodes[i], rightColumn.childNodes[i - 1]);
@@ -31,7 +29,7 @@ class ShuttleBox extends Component {
   }
 
   move_down = () => {
-    const rightColumn = document.getElementById("right");
+    const rightColumn = document.getElementById('right');
     for (let i = 0; i < rightColumn.childNodes.length; i++) {
       if (rightColumn.childNodes[i].selected && i < rightColumn.childNodes.length - 1) {
         rightColumn.insertBefore(rightColumn.childNodes[i + 1], rightColumn.childNodes[i]);
@@ -41,10 +39,10 @@ class ShuttleBox extends Component {
   }
 
   move_right = () => {
-    const node = document.getElementById("left");
+    const node = document.getElementById('left');
     for (let i = 0; i < node.childNodes.length; i++) {
       if (node.childNodes[i].selected) {
-        document.getElementById("right").appendChild(node.childNodes[i].cloneNode(true));
+        document.getElementById('right').appendChild(node.childNodes[i].cloneNode(true));
         node.removeChild(node.childNodes[i]);
         this.props.durationCounter();
         --i;
@@ -53,10 +51,10 @@ class ShuttleBox extends Component {
   }
 
   move_left = () => {
-    const node = document.getElementById("right");
+    const node = document.getElementById('right');
     for (let i = 0; i < node.childNodes.length; i++) {
       if (node.childNodes[i].selected) {
-        document.getElementById("left").appendChild(node.childNodes[i].cloneNode(true));
+        document.getElementById('left').appendChild(node.childNodes[i].cloneNode(true));
         node.removeChild(node.childNodes[i]);
         this.props.durationCounter();
         --i;
@@ -65,20 +63,18 @@ class ShuttleBox extends Component {
   }
 
   move_all_right = () => {
-
-    const node = document.getElementById("left");
+    const node = document.getElementById('left');
     while (node.childNodes.length > 0) {
-      document.getElementById("right").appendChild(node.firstChild.cloneNode(true));
+      document.getElementById('right').appendChild(node.firstChild.cloneNode(true));
       node.removeChild(node.firstChild);
       this.props.durationCounter();
     }
   }
 
   move_all_left = () => {
-
-    const node = document.getElementById("right");
+    const node = document.getElementById('right');
     while (node.childNodes.length > 0) {
-      document.getElementById("left").appendChild(node.firstChild.cloneNode(true));
+      document.getElementById('left').appendChild(node.firstChild.cloneNode(true));
       node.removeChild(node.firstChild);
       this.props.durationCounter();
     }
@@ -91,6 +87,7 @@ class ShuttleBox extends Component {
 
       return <IndividualSong
         id={song.id}
+        key={song.id}
         title={song.title}
         artist={song.artist}
         duration={song.duration}
@@ -100,7 +97,6 @@ class ShuttleBox extends Component {
   }
 
   render() {
-
     return (
       <div id="shuttle-container" >
         <section id="left-shuttle-container">
@@ -110,7 +106,8 @@ class ShuttleBox extends Component {
             {this.renderSongs()}
           </select>
         </section>
-        <section id="controls">
+        <p id="controls-transfer-text">Move songs into and out of the setlist box:</p>
+        <section id="controls-transfer">
           <input type="button" className="controls" value=">" onClick={this.move_right} />
           <br />
           <input type="button" className="controls" value="<" onClick={this.move_left} />
@@ -118,9 +115,10 @@ class ShuttleBox extends Component {
           <input type="button" className="controls" value=">>" onClick={this.move_all_right} />
           <br />
           <input type="button" className="controls" value="<<" onClick={this.move_all_left} />
-          <br />
-          <br />
-          <input type="button" className="controls" value="^" onClick={this.move_up} />
+        </section>
+        <p id="controls-reorder-text">Reorder songs in your setlist:</p>
+        <section id="controls-reorder">
+          <input type="button" id="up" className="controls" value="^" onClick={this.move_up} />
           <br />
           <input type="button" className="controls" value="V" onClick={this.move_down} />
         </section>
@@ -129,7 +127,6 @@ class ShuttleBox extends Component {
           <br />
           <select multiple="multiple" id="right"></select>
         </section>
-
       </div >
     );
   }

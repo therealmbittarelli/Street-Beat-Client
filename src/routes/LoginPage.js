@@ -11,14 +11,11 @@ class LoginPage extends Component {
 
   handleLoginSuccess = () => {
     const { history } = this.props;
-    console.log('history is ', history)
-    // const destination = (location.state || {}).from || '/';
     const destination = '/dashboard/user';
     history.push(destination);
   }
 
   handleLoginFail = () => {
-    console.log('login failed');
     const { history } = this.props;
     history.push('/loginfail');
   }
@@ -39,8 +36,8 @@ class LoginPage extends Component {
           onLoginFail={this.handleLoginFail}
         />
       </Section>
-    )
+    );
   }
-};
+}
 
 export default LoginPage;

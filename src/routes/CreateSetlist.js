@@ -10,10 +10,6 @@ import config from '../config';
 import './CreateSetlist.css';
 
 class CreateSetlist extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
-
   state = {
     error: null,
     setlistDurationArr: [],
@@ -28,7 +24,7 @@ class CreateSetlist extends Component {
     const url = `${config.API_ENDPOINT}/bands/${bandId}/songs`;
 
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -39,8 +35,6 @@ class CreateSetlist extends Component {
         this.context.setBandRepertoire(data);
       });
   }
-
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -62,11 +56,11 @@ class CreateSetlist extends Component {
   }
 
   setlistDurationCounter = () => {
-    const selectedSongs = document.getElementById("right").childNodes
+    const selectedSongs = document.getElementById('right').childNodes
     let bandRepDurationArr = [];
     selectedSongs.forEach((song) => {
       bandRepDurationArr.push(
-        song.getAttribute("duration")
+        song.getAttribute('duration')
       );
     });
     let bandRepDurationArrNum = bandRepDurationArr.map((element) => {
@@ -85,20 +79,18 @@ class CreateSetlist extends Component {
   }
 
   render() {
-    // const { error } = this.context;
+    const { error } = this.state;
     const bandId = this.props.match.params.bandId;
-
-
     return (
       <div id="create-setlist-tool" >
         <NavBar bandId={bandId} />
         <h2>New Setlist</h2>
         <form
-          className='create-setlist-form'
+          className="create-setlist-form"
           onSubmit={this.handleSubmit}
         >
           <div id="title-container">
-            <label htmlFor='title'>Name your setlist*
+            <label htmlFor="title">Name your setlist*
           <Input
                 name="title"
                 type="text"
@@ -109,7 +101,7 @@ class CreateSetlist extends Component {
             </label>
           </div>
           <div id="date-container">
-            <label htmlFor='date'>Date of gig/event*
+            <label htmlFor="date">Date of gig/event*
           <Input
                 name="date"
                 type="text"
@@ -120,7 +112,7 @@ class CreateSetlist extends Component {
             </label>
           </div>
           <div id="shuttle-instructions">
-            Use the controls below to move tunes into the setlist box*
+            Use the controls below to move tunes between boxes and reorder your setlist*
         <br />
           </div>
           <ShuttleBox
@@ -128,8 +120,8 @@ class CreateSetlist extends Component {
             songs={this.context.bandRepertoire}
             durationCounter={this.setlistDurationCounter} />
           <section id="counter-text">
-            {this.state.error
-              ? <p className='red'>Something went wrong. Please try again</p>
+            {error
+              ? <p className="red">Something went wrong. Please try again</p>
               : <div></div>}
             {this.state.setlistDuration > 0 && <p>Setlist duration: <span className="purple">{this.state.setlistDuration} min</span></p>}
           </section>
@@ -149,7 +141,6 @@ class CreateSetlist extends Component {
           </Link>
           </div>
         </form>
-
       </div >
     );
   }

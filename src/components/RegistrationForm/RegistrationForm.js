@@ -39,47 +39,47 @@ export default class RegistrationForm extends Component {
     const { error } = this.state
     return (
       <form
-        className='RegistrationForm'
+        className="RegistrationForm"
         onSubmit={this.handleSubmit}
       >
-        <div role='alert'>
-          {error && <p className='red'>{'Something went wrong. Please try again.'}</p>}
+        <div role="alert">
+          {error && <p className="red">{'Something went wrong. Please try again.'}</p>}
         </div>
-        <div className='first_name'>
-          <label htmlFor='RegistrationForm_first_name'>
+        <div className="first_name">
+          <label htmlFor="RegistrationForm_first_name">
             First name <Required />
           </label>
           <Input
-            name='first_name'
-            type='text'
+            name="first_name"
+            type="text"
             required
-            id='RegistrationForm_first_name'>
+            id="RegistrationForm_first_name">
           </Input>
         </div>
-        <div className='last_name'>
-          <label htmlFor='RegistrationForm_last_name'>
+        <div className="last_name">
+          <label htmlFor="RegistrationForm_last_name">
             Last name
           </label>
           <Input
-            name='last_name'
-            type='text'
+            name="last_name"
+            type="text"
             required
-            id='RegistrationForm_last_name'>
+            id="RegistrationForm_last_name">
           </Input>
         </div>
-        <div className='email'>
-          <label htmlFor='RegistrationForm_email'>
+        <div className="email">
+          <label htmlFor="RegistrationForm_email">
             Email address (you'll use this to login) <Required />
           </label>
           <Input
-            name='email'
-            type='text'
+            name="email"
+            type="text"
             required
-            id='RegistrationForm_email'>
+            id="RegistrationForm_email">
           </Input>
         </div>
-        <div className='password'>
-          <label htmlFor='RegistrationForm_password'>
+        <div className="password">
+          <label htmlFor="RegistrationForm_password">
             Password
              <Required />
           </label>
@@ -87,18 +87,18 @@ export default class RegistrationForm extends Component {
             at least one upper and lower case letter, <br />
             number, and special character</p>
           <Input
-            name='password'
-            type='password'
+            name="password"
+            type="password"
             required
-            id='RegistrationForm_password'>
+            id="RegistrationForm_password">
           </Input>
         </div>
         <Button
           id="user-registration-submit-button"
-          type='submit'>
+          type="submit">
           Submit
         </Button>
       </form>
-    )
+    );
   }
 }

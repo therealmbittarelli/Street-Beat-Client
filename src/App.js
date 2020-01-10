@@ -16,35 +16,28 @@ import PublicOnlyRoute from './components/Utils/PublicOnlyRoute';
 import { Route, Switch } from "react-router-dom";
 import './App.css';
 
-// revisit .env to update API KEY 
-
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-
       bands: [],
       hasError: false
-      // add more here later
     };
   }
 
   static getDerivedStateFromError(error) {
-    console.error(error);
     return { hasError: true };
   }
 
   render() {
-
     return (
-      <div className='App'>
-        <header className='App_header'>
+      <div className="App">
+        <header className="App_header">
           <Header />
         </header>
-        <main className='App_main'>
-          {this.state.hasError && <p className='red'>There was an error!</p>}
+        <main className="App_main">
+          {this.state.hasError && <p className="red">There was an error!</p>}
           <Switch>
             <PublicOnlyRoute
               exact
@@ -100,7 +93,7 @@ class App extends Component {
           </Switch>
         </main>
       </div>
-    )
+    );
   }
 }
 

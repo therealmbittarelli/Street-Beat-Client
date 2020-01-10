@@ -38,13 +38,13 @@ class BandSearch extends Component {
     const searchInput = this.state.searchTerm;
     const url = `${config.API_ENDPOINT}/bands`;
 
-    // this ----------------
+    // create a query string with the band being searched for
     let queryString = "?q=" + searchInput;
     const newUrl = url + queryString
     const authToken = TokenService.getAuthToken();
 
     fetch(newUrl, {
-      method: "GET",
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -55,48 +55,58 @@ class BandSearch extends Component {
 
   }
 
+  handleSetSearchState = (err) => {
+    this.setState({
+      error: err
+    })
+  }
+
   renderSearchResults() {
     const results = this.state.searchResults;
     if (results.length > 0) {
       return results.map(result =>
         (<BandResult
+          key={result.id}
+          getBandsCallback={this.props.getBandsCallback}
           band_name={result.band_name}
-          id={result.id} />)
+          id={result.id}
+          handleSetSearchState={this.handleSetSearchState}
+        />)
       )
     }
   }
 
   render() {
-    const { error } = this.context;
+    const { error } = this.state;
     return (
       <form
-        className='search'
+        className="search"
         onSubmit={this.handleSubmit}>
-        <label id="band-search-text" htmlFor='band_search_bar'>
+        <label id="band-search-text" htmlFor="band_search_bar">
           Did you join or start a new band? <br /> Search to see if it's registered on Street Beat!
         </label>
         <Input
-          name='band_search'
-          type='text'
-          id='band_search_bar'
+          name="band_search"
+          type="text"
+          id="band_search_bar"
           value={this.state.searchTerm}
           onChange={this.handleInput.bind(this)}
-          placeholder='Fly By Brass Band'>
+          placeholder="Fly By Brass Band">
         </Input>
         <Button
-          id='band-search-button'
-          type='submit'>
+          id="band-search-button"
+          type="submit"
+          onClick={this.handleSetSearchState}>
           Search
         </Button>
         <section list="true" id="bands-list">
           {error
-            ? <p className='red'>Something went wrong. Please try again</p>
+            ? <p className="red">Something went wrong. Please try again</p>
             : this.renderSearchResults()}
         </section>
       </form>
     );
   }
-
 }
 
 

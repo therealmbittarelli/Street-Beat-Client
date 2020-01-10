@@ -11,23 +11,19 @@ class RegisterUser extends Component {
 
   handleRegisterSuccess = () => {
     const { history } = this.props;
-    console.log('handleRegisterSuccess reached');
-    // const destination = (location.state || {}).from || '/';
     history.push('/');
   }
 
-  // handleRegisterFail?
-
   render() {
     return (
-      <Section className='RegisterUser'>
+      <Section className="RegisterUser">
         <h2>Register</h2>
         <RegistrationForm
           onRegisterSuccess={() => this.handleRegisterSuccess()}
         />
       </Section>
-    )
+    );
   }
-};
+}
 
 export default RegisterUser;

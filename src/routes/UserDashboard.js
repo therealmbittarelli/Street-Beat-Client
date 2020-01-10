@@ -18,12 +18,16 @@ class UserDashboard extends Component {
   static contextType = BandsListContext;
 
   componentDidMount() {
+    this.getMyBands();
+  }
+
+  getMyBands() {
     const authToken = TokenService.getAuthToken();
 
     const url = `${config.API_ENDPOINT}/bands/mybands`;
 
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -38,34 +42,36 @@ class UserDashboard extends Component {
       .catch(console.log);
   }
 
-  // updateMyBands = (newBand) => {
-  //   this.setState({ myBands: [...this.state.myBands, newBand] })
-  // }
   renderUsersBands = () => {
     const bandsUserIsIn = this.context.usersBands;
 
     return bandsUserIsIn.map(band =>
-
       < UsersBands
         id={band.id}
+        key={band.id}
         band_name={band.band_name}
       />
     );
   }
 
+  handleSetState = (data) => {
+    this.setState({
+      myBands: [...this.state.myBands, data]
+    })
+  }
+
   render() {
     const { error } = this.context;
-
     return (
       <div>
         <h2 id="user-dash-heading">Click below to navigate to a band's landing page:</h2>
         <section list="true" className="BandsList">
           {error
-            ? <p className='red'>Something went wrong. Please try again</p>
+            ? <p className="red">Something went wrong. Please try again</p>
             : this.renderUsersBands()}
         </section>
         <section id="band-search-to-join">
-          <BandSearch />
+          <BandSearch getBandsCallback={this.getMyBands.bind(this)} />
         </section>
         <section id="add-band-container">
           <p>Don't see your band listed?</p>

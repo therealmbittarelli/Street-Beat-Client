@@ -43,7 +43,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <nav className='Header'>
+      <nav className="Header">
         <section id="login-register-links-container">
           {TokenService.hasAuthToken()
             ? this.renderLogoutLink()
@@ -57,6 +57,6 @@ export default class Header extends Component {
           </Link>
         </h1>
       </nav>
-    )
+    );
   }
 }

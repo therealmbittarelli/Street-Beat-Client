@@ -11,7 +11,7 @@ class BandResult extends Component {
     super(props);
 
     this.state = {
-      bandToJoin: {}
+      error: null
     }
   }
 
@@ -27,28 +27,42 @@ class BandResult extends Component {
     const url = `${config.API_ENDPOINT}/bands/${this.props.id}/join`;
 
     fetch(url, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
       }
     })
       .then(res => res.json())
-      .then(data => {
-        this.setState({
-          bandToJoin: data
-        })
+      .then((data) => {
+        this.setState({ error: data.error });
+        this.props.getBandsCallback();
+        this.props.handleSetSearchState();
       });
   }
+
+  handleSetState = () => {
+    this.setState({
+      error: null
+    });
+  }
+
+
   render() {
+    const { error } = this.state;
     return (
-      <div>
-        <div id="band-search-result">
+      <div id="results-container">
+        <div id="already-joined-error">
+          {error && <p className="red">{'You\'ve already joined this band!'}</p>}
+        </div>
+        <div key={this.props.id} id="band-search-result">
           <p>{this.props.band_name}</p>
         </div >
-        <Button id="join-band-button" type='submit'
-          onClick={(e) => this.handleSubmit(e)}>Join band</Button>
-
+        <Button id="join-band-button" type="submit"
+          onClick={(e) => {
+            this.handleSubmit(e);
+            this.handleSetState();
+          }}>Join band</Button>
       </div>
     );
   }

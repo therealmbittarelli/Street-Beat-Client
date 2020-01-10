@@ -16,7 +16,7 @@ const AuthApiService = {
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
-      )
+      );
   },
 
   postUser(user) {
@@ -68,13 +68,12 @@ const AuthApiService = {
   },
 
   postSetlist(bandId, setlist) {
-
-    const options = document.getElementById("right").childNodes
+    const options = document.getElementById('right').childNodes
     let songsToSave = [];
     options.forEach((option) => {
       songsToSave.push({
-        song_id: option.getAttribute("song_id"),
-        band_id: option.getAttribute("band_id")
+        song_id: option.getAttribute('song_id'),
+        band_id: option.getAttribute('band_id')
       });
     });
 
@@ -95,8 +94,7 @@ const AuthApiService = {
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       );
-  },
-
+  }
 }
 
 export default AuthApiService;

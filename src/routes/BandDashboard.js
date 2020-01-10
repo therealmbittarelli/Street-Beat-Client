@@ -7,22 +7,19 @@ import './BandDashboard.css';
 import config from '../config';
 
 class BandDashboard extends Component {
-
-  // constructor(props) {
-  //   super(props)
-  // }
   static contextType = BandsListContext;
 
   static defaultProps = {
     band_name: ''
   }
+
   componentDidMount() {
     const authToken = TokenService.getAuthToken();
     const bandId = this.props.match.params.bandId;
     const url = `${config.API_ENDPOINT}/bands/${bandId}/bandmembers`;
 
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -64,7 +61,7 @@ class BandDashboard extends Component {
         <section list="true" className="members-list">
           Members
           {error
-            ? <p className='red'>Something went wrong. Please try again</p>
+            ? <p className="red">Something went wrong. Please try again</p>
             : this.renderBandMembers()}
         </section>
       </div>

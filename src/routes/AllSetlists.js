@@ -8,10 +8,6 @@ import config from '../config';
 import './AllSetlists.css';
 
 export default class AllSetlists extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   static contextType = BandsListContext;
 
   static defaultProps = {
@@ -24,7 +20,7 @@ export default class AllSetlists extends Component {
     const url = `${config.API_ENDPOINT}/bands/${bandId}/setlists`;
 
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
         'Authorization': `Bearer ${authToken}`
@@ -43,7 +39,7 @@ export default class AllSetlists extends Component {
     return allSavedSetlists.map((setlist) => {
       let date = NiceDate(setlist.date)
 
-      return <div id="setlist-list">
+      return <div key={setlist.id} id="setlist-list">
         <Link
           id="individual-saved-setlist"
           to={{
@@ -64,7 +60,6 @@ export default class AllSetlists extends Component {
   render() {
     const { error } = this.context;
     const bandId = this.props.match.params.bandId;
-
     return (
       <div id="all-setlists-container">
         <NavBar bandId={bandId} />

@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import TokenService from './services/token-service.js'
-// import config from './config';
-
 
 const BandsListContext = React.createContext({
   setActiveBand: () => { },
@@ -41,8 +38,6 @@ export class BandsListProvider extends Component {
     loggedIn: null
   };
 
-
-
   setUsersBands = (usersBands) => {
     this.setState({ usersBands })
   }
@@ -56,9 +51,7 @@ export class BandsListProvider extends Component {
   }
 
   setActiveBand = (bandId) => {
-    this.setState({
-      activeBand: bandId
-    })
+    this.setState({ activeBand: bandId })
   }
 
   setBandSetlists = (bandSetlists) => {
@@ -74,7 +67,6 @@ export class BandsListProvider extends Component {
   }
 
   setError = error => {
-    console.error(error)
     this.setState({ error })
   }
 
@@ -83,9 +75,7 @@ export class BandsListProvider extends Component {
   }
 
   setLoggedIn = (status) => {
-    this.setState({
-      loggedIn: status
-    })
+    this.setState({ loggedIn: status })
   }
 
   render() {
@@ -115,6 +105,6 @@ export class BandsListProvider extends Component {
       <BandsListContext.Provider value={value}>
         {this.props.children}
       </BandsListContext.Provider>
-    )
+    );
   }
 }

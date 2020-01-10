@@ -30,7 +30,6 @@
   font-weight: bold;
   font-size: 18px;
   color:#5b009e;
-  /* border: 7px dotted; */
   border: 2px dashed;
   border-top-color: #06BC40;
   border-bottom-color: #D4AF37;
@@ -56,6 +55,10 @@
 
 /* BandSearch */
 
+#bands-list {
+  margin-top: 20px;
+}
+
 #band-search-text {
   font-size: 18px;
 }
@@ -71,6 +74,7 @@
 #band-search-result {
   font-weight: bold;
   font-size: 18px;
+  margin-top: -30px;
 }
 
 #band-search-result p {

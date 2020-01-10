@@ -15,7 +15,7 @@ class LoginFail extends Component {
           <Link to={'/register'}>Register</Link>
         </div>
       </div>
-    )
+    );
   }
 }
 

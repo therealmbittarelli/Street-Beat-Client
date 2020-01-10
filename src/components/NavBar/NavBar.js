@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { Button } from '../components/Utils/Utils';
-// import TokenService from '../services/token-service.js'
-// import BandsListContext from '../Context';
 import './NavBar.css';
-// import config from '../config';
 
 class NavBar extends Component {
 
@@ -14,7 +10,6 @@ class NavBar extends Component {
 
   render() {
     const bandId = this.props.bandId;
-
     return (
       <div>
         <nav id="nav-bar-container">

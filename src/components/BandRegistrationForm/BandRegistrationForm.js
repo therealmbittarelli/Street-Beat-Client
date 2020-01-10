@@ -41,68 +41,68 @@ export default class BandRegistrationForm extends Component {
     const { error } = this.state
     return (
       <form
-        className='BandRegistrationForm'
+        className="BandRegistrationForm"
         onSubmit={this.handleSubmit}
       >
-        <div role='alert'>
-          {error && <p className='red'>{'Something went wrong. Please try again.'}</p>}
+        <div role="alert">
+          {error && <p className="red">{'Something went wrong. Please try again.'}</p>}
         </div>
-        <div className='first_name'>
-          <label htmlFor='BandRegistrationForm_band_name'>
+        <div className="first_name">
+          <label htmlFor="BandRegistrationForm_band_name">
             Band name <Required />
           </label>
           <Input
-            name='band_name'
+            name="band_name"
             type='text'
             required
-            id='BandRegistrationForm_band_name'>
+            id="BandRegistrationForm_band_name">
           </Input>
         </div>
-        <div className='city'>
-          <label htmlFor='BandRegistrationForm_city'>
-            City
+        <div className="city">
+          <label htmlFor="BandRegistrationForm_city">
+            City <Required />
           </label>
           <Input
-            name='city'
-            type='text'
-            id='BandRegistrationForm_city'>
+            name="city"
+            type="text"
+            required
+            id="BandRegistrationForm_city">
           </Input>
         </div>
-        <div className='state'>
-          <label htmlFor='BandRegistrationForm_state'>
+        <div className="state">
+          <label htmlFor="BandRegistrationForm_state">
             State
           </label>
           <Input
-            name='state'
-            type='text'
-            id='BandRegistrationForm_state'>
+            name="state"
+            type="text"
+            id="BandRegistrationForm_state">
           </Input>
         </div>
-        <div className='country'>
-          <label htmlFor='BandRegistrationForm_country'>
+        <div className="country">
+          <label htmlFor="BandRegistrationForm_country">
             Country <Required />
           </label>
           <Input
-            name='country'
-            type='text'
+            name="country"
+            type="text"
             required
-            id='BandRegistrationForm_country'>
+            id="BandRegistrationForm_country">
           </Input>
         </div>
-        <div className='description'>
-          <label htmlFor='BandRegistrationForm_description'>
-            Description <Required />
+        <div className="description">
+          <label htmlFor="BandRegistrationForm_description">
+            Description
           </label>
           <Input
-            name='description'
-            type='text'
-            required
-            id='BandRegistrationForm_description'>
+            name="description"
+            type="text"
+            id="BandRegistrationForm_description">
           </Input>
         </div>
         <Button
           id="band-register-button"
-          type='submit'>
+          type="submit">
           Register
         </Button>
         <Link
@@ -111,6 +111,6 @@ export default class BandRegistrationForm extends Component {
           Back
         </Link>
       </form>
-    )
+    );
   }
 }
