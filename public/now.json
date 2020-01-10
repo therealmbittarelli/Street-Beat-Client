@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": "street-beat-client",
+  "alias": "street-beat",
   "name": "street-beat-client",
   "routes": [
     {
